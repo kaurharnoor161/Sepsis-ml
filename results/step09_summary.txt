@@ -1,0 +1,148 @@
+root: /Users/harnoorkaur/Downloads/Sepsis_ml
+[PASS] features_flat.parquet exists
+[PASS] unique patients (observed 40336, expected 40336)
+[PASS] rows in patient_splits (observed 40336, expected 40336)
+[PASS] hospital A patients (observed 20336, expected 20336)
+[PASS] hospital B patients (observed 20000, expected 20000)
+[PASS] train patients (observed 28235, expected 28235)
+[PASS] train septic patients (observed 2052, expected 2052)
+[PASS] train septic patients labelled in first row (observed 298, expected 298)
+[PASS] val patients (observed 6050, expected 6050)
+[PASS] val septic patients (observed 440, expected 440)
+[PASS] val septic patients labelled in first row (observed 65, expected 65)
+[PASS] test patients (observed 6051, expected 6051)
+[PASS] test septic patients (observed 440, expected 440)
+[PASS] test septic patients labelled in first row (observed 63, expected 63)
+[PASS] overall septic rate (observed 0.0727, expected 0.0727)
+[PASS] minimum n_rows is at least 8 (min 8)
+section 1: 0.0 s
+rows read: 322,688
+patients with NaN in HR_mean8: 47
+patients with NaN in Resp_mean8: 575
+patients with NaN in Temp_mean8: 1966
+patients with NaN in MAP_mean8: 461
+patients with NaN in SBP_mean8: 866
+patients with NaN in O2Sat_mean8: 121
+    feature    mean    std    min     50%     max
+   HR_mean8  84.144 16.426 40.000  83.000 150.000
+ Resp_mean8  18.056  4.117  3.000  17.643  43.000
+ Temp_mean8  36.714  0.668 33.000  36.683  39.670
+  MAP_mean8  82.841 14.062 40.500  80.688 158.000
+  SBP_mean8 123.006 20.066 64.000 120.143 213.000
+O2Sat_mean8  97.666  2.214 74.000  98.143 100.000
+    n_labs8  15.256 13.841  0.000  13.000 120.000
+        Age  61.643 16.483 14.000  63.110 100.000
+     unit_1   0.304  0.460  0.000   0.000   1.000
+     unit_2   0.309  0.462  0.000   0.000   1.000
+[PASS] rows in feature table (observed 40336, expected 40336)
+[PASS] one row per patient
+[PASS] every patient has a split
+[PASS] no NaN or inf in standardised columns
+[PASS] max abs train mean of z columns (observed 1.6548712698276674e-15, expected 0)
+[PASS] max abs deviation of train std from 1 (observed 1.1102230246251565e-16, expected 0)
+[PASS] no outcome column among the clustering inputs ([])
+section 2: 0.2 s
+ k    inertia  silhouette  davies_bouldin
+ 2 244125.425       0.131           2.369
+ 3 217121.780       0.144           2.191
+ 4 199830.907       0.145           2.156
+ 5 187293.376       0.144           1.984
+ 6 178909.191       0.143           1.922
+ 7 171917.150       0.135           1.909
+ 8 166002.389       0.135           1.961
+rule: k = 2 is reported but not eligible, selected k is the best silhouette among 3..8
+k = 2 silhouette 0.131, selected k = 4 with silhouette 0.145
+ seed  ari_vs_main
+   43        0.994
+   44        0.994
+   45        0.995
+   46        0.995
+   47        0.994
+stability ARI: mean 0.994, min 0.994
+section 3: 5.1 s
+ cluster  patients  share  septic_rate  lift  ci_low  ci_high  septic_first_row_share  median_n_rows  median_first_pos_hour  share_hospital_A
+       0      8295  0.294        0.089 1.224   0.083    0.095                   0.104         39.000                 35.500             0.676
+       1      6641  0.235        0.089 1.225   0.082    0.096                   0.201         39.000                 16.000             0.483
+       2      7968  0.282        0.053 0.725   0.048    0.058                   0.140         38.000                 34.000             0.476
+       3      5331  0.189        0.057 0.782   0.051    0.063                   0.142         38.000                 27.000             0.304
+ cluster  HR_mean8  Resp_mean8  Temp_mean8  MAP_mean8  SBP_mean8  O2Sat_mean8  n_labs8    Age  unit_1  unit_2
+       0    81.281      17.615      36.742     78.137    117.170       97.699   14.277 61.000   0.000   0.000
+       1    87.065      19.364      36.649     77.269    114.165       97.137   11.386 61.850   0.994   0.001
+       2    84.261      16.852      36.733     78.343    116.462       98.300   22.807 63.620   0.000   1.000
+       3    84.281      18.895      36.707    103.875    152.317       97.421   10.192 58.908   0.362   0.144
+split  cluster  patients  septic  septic_rate
+train        0      8295     738        0.089
+train        1      6641     591        0.089
+train        2      7968     420        0.053
+train        3      5331     303        0.057
+  val        0      1813     166        0.092
+  val        1      1464     129        0.088
+  val        2      1663      88        0.053
+  val        3      1110      57        0.051
+ test        0      1735     156        0.090
+ test        1      1440     136        0.094
+ test        2      1742      81        0.046
+ test        3      1134      67        0.059
+train: chi2 125.9, dof 3, p 4.18e-27
+val: chi2 31.9, dof 3, p 5.56e-07
+test: chi2 38.6, dof 3, p 2.13e-08
+train: highest-risk cluster 1, septic rate 0.089, lift 1.22 (vs split rate 0.073), share of split septic patients 0.288
+val: highest-risk cluster 0, septic rate 0.092, lift 1.26 (vs split rate 0.073), share of split septic patients 0.377
+test: highest-risk cluster 1, septic rate 0.094, lift 1.30 (vs split rate 0.073), share of split septic patients 0.309
+section 4: 0.6 s
+ward: silhouette 0.120, Davies-Bouldin 2.321
+k-means on the same patients: silhouette 0.145, Davies-Bouldin 2.152
+adjusted Rand index ward vs k-means: 0.698
+ cluster  patients  septic_rate  lift  HR_mean8  Resp_mean8  Temp_mean8  MAP_mean8  SBP_mean8  O2Sat_mean8  n_labs8    Age  unit_1  unit_2
+       1      1409        0.049 0.674    83.698      16.941      36.731     78.762    117.385       98.244   21.870 64.575   0.000   0.999
+       2      1387        0.105 1.438    87.568      19.837      36.659     79.040    116.765       97.243   11.828 61.726   0.902   0.003
+       3       829        0.066 0.913    85.746      18.489      36.784    101.407    149.329       97.339   13.829 56.278   0.318   0.153
+       4      1375        0.081 1.111    80.216      17.174      36.712     79.789    119.058       97.820   12.359 60.431   0.000   0.011
+section 5: 0.7 s
+eps 2.162 at quantile 0.938 of the sorted k-distance curve
+dbscan: 3 clusters, noise share 0.015
+septic rate noise 0.178, non-noise 0.072
+dbscan silhouette 0.154 on 10,000 non-noise patients
+core samples: 18,767
+split  patients  flagged  flagged_share  septic_rate_flagged  septic_rate_not_flagged
+train     28235      406          0.014                0.172                    0.071
+  val      6050      101          0.017                0.188                    0.071
+ test      6051      108          0.018                0.185                    0.071
+      group  patients  HR_mean8  Resp_mean8  Temp_mean8  MAP_mean8  SBP_mean8  O2Sat_mean8  n_labs8    Age  unit_1  unit_2
+    flagged       406    99.062      24.292      36.437     85.212    122.041       92.526   18.889 58.433   0.458   0.241
+not_flagged     27829    83.832      17.963      36.715     82.851    123.037       97.759   15.180 61.590   0.300   0.311
+section 6: 3.0 s
+method  patients_used  n_clusters  silhouette  davies_bouldin  noise_share  ari_vs_kmeans
+kmeans          28235           4       0.145           2.156          NaN            NaN
+  ward           5000           4       0.120           2.321          NaN          0.698
+dbscan          20000           3       0.154           2.344        0.015          0.705
+silhouette is on SIL_N train patients for kmeans, on the sample for ward and on up to 10,000 non-noise patients for dbscan
+[PASS] every patient has a k-means cluster
+[PASS] k-means cluster sizes sum (observed 40336, expected 40336)
+[PASS] k-means silhouette and Davies-Bouldin finite
+[PASS] ward silhouette and Davies-Bouldin finite
+[PASS] selected k between 3 and 8 (k 4)
+[PASS] ward cut clusters (observed 4, expected 4)
+[PASS] dbscan flagged + not flagged in train (observed 28235, expected 28235)
+[PASS] dbscan flagged + not flagged in val (observed 6050, expected 6050)
+[PASS] dbscan flagged + not flagged in test (observed 6051, expected 6051)
+[PASS] dbscan summary patients (observed 40336, expected 40336)
+section 7: 0.0 s
+[PASS] saved data/processed/patient_cluster_features.parquet (1.60 MB)
+[PASS] saved data/processed/cluster_assignments.parquet (0.30 MB)
+[PASS] saved data/processed/cluster_params.joblib (1.62 MB)
+[PASS] saved results/tables/cluster_selection_k.csv (0.00 MB)
+[PASS] saved results/tables/cluster_stability.csv (0.00 MB)
+[PASS] saved results/tables/cluster_profile_kmeans.csv (0.00 MB)
+[PASS] saved results/tables/cluster_septic_rate_by_split.csv (0.00 MB)
+[PASS] saved results/tables/cluster_ward_profile.csv (0.00 MB)
+[PASS] saved results/tables/cluster_dbscan_summary.csv (0.00 MB)
+[PASS] saved results/tables/cluster_dbscan_profile.csv (0.00 MB)
+[PASS] saved results/tables/cluster_method_comparison.csv (0.00 MB)
+[PASS] saved results/figures/fig09_kmeans_selection.png (0.08 MB)
+[PASS] saved results/figures/fig09_cluster_centroids.png (0.08 MB)
+[PASS] saved results/figures/fig09_cluster_septic_rate.png (0.03 MB)
+[PASS] saved results/figures/fig09_cluster_scatter.png (0.51 MB)
+[PASS] saved results/figures/fig09_ward_dendrogram.png (0.05 MB)
+[PASS] saved results/figures/fig09_dbscan_kdistance.png (0.04 MB)
+checks: 50 passed, 0 failed

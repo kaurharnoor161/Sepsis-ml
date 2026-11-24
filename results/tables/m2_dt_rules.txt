@@ -1,0 +1,46 @@
+|--- cnt_MAP <= 47.50
+|   |--- FiO2_tsl <= 8.50
+|   |   |--- sirs_count <= 1.50
+|   |   |   |--- Creatinine_max_so_far <= 1.51
+|   |   |   |   |--- class: 0
+|   |   |   |--- Creatinine_max_so_far >  1.51
+|   |   |   |   |--- class: 1
+|   |   |--- sirs_count >  1.50
+|   |   |   |--- shock_index <= 1.19
+|   |   |   |   |--- class: 1
+|   |   |   |--- shock_index >  1.19
+|   |   |   |   |--- class: 1
+|   |--- FiO2_tsl >  8.50
+|   |   |--- Temp <= 37.88
+|   |   |   |--- shock_index <= 0.96
+|   |   |   |   |--- class: 0
+|   |   |   |--- shock_index >  0.96
+|   |   |   |   |--- class: 0
+|   |   |--- Temp >  37.88
+|   |   |   |--- Temp <= 38.32
+|   |   |   |   |--- class: 1
+|   |   |   |--- Temp >  38.32
+|   |   |   |   |--- class: 1
+|--- cnt_MAP >  47.50
+|   |--- cnt_MAP <= 54.50
+|   |   |--- PaCO2_tsl <= 20.50
+|   |   |   |--- Temp <= 37.52
+|   |   |   |   |--- class: 1
+|   |   |   |--- Temp >  37.52
+|   |   |   |   |--- class: 1
+|   |   |--- PaCO2_tsl >  20.50
+|   |   |   |--- sirs_count <= 0.50
+|   |   |   |   |--- class: 0
+|   |   |   |--- sirs_count >  0.50
+|   |   |   |   |--- class: 1
+|   |--- cnt_MAP >  54.50
+|   |   |--- Temp <= 37.60
+|   |   |   |--- cnt_Chloride <= 2.50
+|   |   |   |   |--- class: 1
+|   |   |   |--- cnt_Chloride >  2.50
+|   |   |   |   |--- class: 1
+|   |   |--- Temp >  37.60
+|   |   |   |--- Temp <= 38.29
+|   |   |   |   |--- class: 1
+|   |   |   |--- Temp >  38.29
+|   |   |   |   |--- class: 1

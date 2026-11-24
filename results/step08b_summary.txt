@@ -1,0 +1,119 @@
+root: /Users/harnoorkaur/Downloads/Sepsis_ml
+[PASS] features_flat rows (observed 1552210, expected 1552210)
+[PASS] train rows (observed 1085958, expected 1085958)
+[PASS] train positive rows (observed 19530, expected 19530)
+[PASS] val rows (observed 234037, expected 234037)
+[PASS] val positive rows (observed 4183, expected 4183)
+[PASS] test rows (observed 232215, expected 232215)
+[PASS] test positive rows (observed 4203, expected 4203)
+[PASS] train patients (observed 28235, expected 28235)
+[PASS] val patients (observed 6050, expected 6050)
+[PASS] test patients (observed 6051, expected 6051)
+[PASS] val septic patients (observed 440, expected 440)
+[PASS] val septic patients labelled in first row (observed 65, expected 65)
+[PASS] val never-septic patients (observed 5610, expected 5610)
+[PASS] test septic patients (observed 440, expected 440)
+[PASS] test septic patients labelled in first row (observed 63, expected 63)
+[PASS] test never-septic patients (observed 5611, expected 5611)
+[PASS] core_scaled aligned with features_flat on patient_id and hour (1,552,210 rows)
+[PASS] pca_scores aligned with features_flat on patient_id and hour (1,552,210 rows)
+[PASS] core features (observed 50, expected 50)
+[PASS] mask columns (observed 34, expected 34)
+[PASS] PC columns (observed 29, expected 29)
+[PASS] masks are 0/1
+[PASS] no forbidden column used as a feature
+[PASS] subset rows (observed 100000, expected 100000)
+[PASS] subset positives (observed 19530, expected 19530)
+[PASS] subset row_index sorted and unique
+[PASS] every subset row is a train row
+[PASS] subset ids and labels match features_flat
+[PASS] train_subset_pca feature columns (29 columns)
+[PASS] train_subset_core_scaled feature columns (50 columns)
+[PASS] subset PCs equal pca_scores at row_index
+[section 1] elapsed 1.3 s
+load core and pca: 0.4 s
+[PASS] train arrays (1,085,958 rows, 50/29/34 columns)
+[PASS] val arrays (234,037 rows, 50/29/34 columns)
+[PASS] test arrays (232,215 rows, 50/29/34 columns)
+[PASS] val meta length and no missing patients
+[PASS] test meta length and no missing patients
+[PASS] subset arrays
+[PASS] subset labels equal in both subset files
+[section 2] elapsed 0.8 s
+M4_gnb_core: best var_smoothing = 0.01, val auprc 0.081, val auroc 0.742, distinct val scores 226,961
+M4b_bnb_masks: best alpha = 5, val auprc 0.026, val auroc 0.584, distinct val scores 7,062
+M4c_gnb_pca: best var_smoothing = 0.1, val auprc 0.077, val auroc 0.774, distinct val scores 197,709
+[section 3] elapsed 10.0 s
+pca knn fit and val search: 21.8 s
+[PASS] neighbour shapes and dtypes ((234037, 51))
+[PASS] neighbour indices inside the subset
+[PASS] distances sorted
+M5 best: k = 51, weights = distance, val auprc 0.081, distinct val scores 175,584
+[section 4] elapsed 52.6 s
+M6_linsvm: best C = 0.001, val auprc 0.074, val auroc 0.770
+[PASS] SVM_ROWS rows are a subset of the train subset (25,000 rows)
+rbf C=0.3, gamma=0.01: val auprc 0.077, auroc 0.806, fit 17 s, score 59 s, support vectors 15,195
+rbf C=0.3, gamma=0.05: val auprc 0.069, auroc 0.803, fit 16 s, score 62 s, support vectors 15,810
+rbf C=1, gamma=0.01: val auprc 0.076, auroc 0.807, fit 17 s, score 56 s, support vectors 14,591
+rbf C=1, gamma=0.05: val auprc 0.063, auroc 0.789, fit 14 s, score 55 s, support vectors 14,365
+rbf C=3, gamma=0.01: val auprc 0.069, auroc 0.797, fit 16 s, score 53 s, support vectors 13,973
+rbf C=3, gamma=0.05: val auprc 0.054, auroc 0.765, fit 14 s, score 50 s, support vectors 13,068
+M6_rbfsvm: best C = 0.3, gamma = 0.01
+rbf scoring on full val: 200.0 s
+full val auprc: linear 0.074, rbf 0.078 (auroc: linear 0.770, rbf 0.808)
+[section 5] elapsed 630.6 s
+[PASS] M4_gnb_core val scores finite and right length (234,037 rows)
+[PASS] M4b_bnb_masks val scores finite and right length (234,037 rows)
+[PASS] M4c_gnb_pca val scores finite and right length (234,037 rows)
+[PASS] M5_knn val scores finite and right length (234,037 rows)
+[PASS] M6_linsvm val scores finite and right length (234,037 rows)
+[PASS] M6_rbfsvm val scores finite and right length (234,037 rows)
+threshold M4_gnb_core: 12.4233
+threshold M4b_bnb_masks: -3.9310
+threshold M4c_gnb_pca: -3.9768
+threshold M5_knn: 0.3782
+threshold M6_linsvm: 0.3790
+threshold M6_rbfsvm: 0.7127
+[PASS] thresholds file written
+val metrics at a threshold tuned on val are optimistic
+[PASS] thresholds file written before test scoring
+[PASS] test neighbour shapes ((232215, 51))
+test scoring: 138.5 s
+test scored once
+test accuracy of always predicting 0: 0.9819; models: M4_gnb_core 0.9373, M4b_bnb_masks 0.7929, M4c_gnb_pca 0.9133, M5_knn 0.9277, M6_linsvm 0.9146, M6_rbfsvm 0.8982
+[PASS] val scores finite and of the right length (234,037 rows)
+[PASS] test scores finite and of the right length (232,215 rows)
+[PASS] val early + first-row septic patients = 440
+[PASS] val first-row patients = 65
+[PASS] val never-septic patients = 5610
+[PASS] test early + first-row septic patients = 440
+[PASS] test first-row patients = 63
+[PASS] test never-septic patients = 5611
+[PASS] val confusion matrices sum to the row count
+[PASS] test confusion matrices sum to the row count
+[PASS] no val AUROC above 0.95 (max 0.808)
+[PASS] no test AUROC above 0.95 (max 0.813)
+[section 6] elapsed 146.2 s
+[PASS] every train and val row has a fold from 0 to 4 (1,319,995 rows)
+KNN and SVM are not cross-validated: they are trained on a fixed train-only subset and tuned on the train-to-validation split
+the PCA and the scaling were fitted on train rows, which include some of the held-out patients in these folds
+[section 7] elapsed 4.4 s
+results/tables/m4_nb_tuning.csv: 0.00 MB
+results/tables/m4_nb_correlation_summary.csv: 0.00 MB
+results/tables/m5_knn_tuning.csv: 0.00 MB
+results/tables/m5_knn_pca_vs_core.csv: 0.00 MB
+results/tables/m6_svm_tuning.csv: 0.00 MB
+results/tables/m4_m6_results_val.csv: 0.00 MB
+results/tables/m4_m6_alert_metrics_val.csv: 0.00 MB
+results/tables/m4_m6_threshold_sweep_val.csv: 0.01 MB
+results/tables/m4_m6_results_test.csv: 0.00 MB
+results/tables/m4_m6_alert_metrics_test.csv: 0.00 MB
+results/figures/fig08b_nb_correlation.png: 0.04 MB
+results/figures/fig08b_pr_roc_test.png: 0.16 MB
+data/processed/thresholds_m4_m6.json: 0.00 MB
+data/processed/scores_m4_m6_val.parquet: 7.08 MB
+data/processed/scores_m4_m6_test.parquet: 7.04 MB
+results/tables/m4_cv_results.csv: 0.00 MB
+results/tables/m4_cv_summary.csv: 0.00 MB
+[section 8] elapsed 0.0 s
+checks: 64 passed, 0 failed

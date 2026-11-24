@@ -1,0 +1,186 @@
+root: /Users/harnoorkaur/Downloads/Sepsis_ml
+[PASS] total rows (observed 1552210, expected 1552210)
+[PASS] train rows (observed 1085958, expected 1085958)
+[PASS] train positive rows (observed 19530, expected 19530)
+[PASS] train patients (observed 28235, expected 28235)
+[PASS] val rows (observed 234037, expected 234037)
+[PASS] val positive rows (observed 4183, expected 4183)
+[PASS] val patients (observed 6050, expected 6050)
+[PASS] val septic patients (observed 440, expected 440)
+[PASS] val first-row septic patients (observed 65, expected 65)
+[PASS] val never-septic patients (observed 5610, expected 5610)
+[PASS] test rows (observed 232215, expected 232215)
+[PASS] test positive rows (observed 4203, expected 4203)
+[PASS] test patients (observed 6051, expected 6051)
+[PASS] test septic patients (observed 440, expected 440)
+[PASS] test first-row septic patients (observed 63, expected 63)
+[PASS] test never-septic patients (observed 5611, expected 5611)
+[PASS] core_scaled aligned with features_flat on patient_id and hour
+[PASS] number of feature columns (observed 50, expected 50)
+[PASS] no forbidden column is a feature
+[PASS] features have no NaN or inf
+section 1: 0.5 s
+[PASS] meta tables match the score rows
+[PASS] no missing ever_septic, and first_positive_hour known for septic patients
+split    rows  positive_rows  features
+train 1085958          19530        50
+  val  234037           4183        50
+ test  232215           4203        50
+network parameters for (64, 32) with 50 inputs: 5,377 (expected 5,377)
+section 2: 0.2 s
+relu     alpha=1e-05 lr=0.001 best epoch 6, val AUPRC 0.106 (2 s)
+relu     alpha=1e-05 lr=0.003 best epoch 4, val AUPRC 0.104 (2 s)
+relu     alpha=0.001 lr=0.001 best epoch 6, val AUPRC 0.108 (2 s)
+relu     alpha=0.001 lr=0.003 best epoch 4, val AUPRC 0.104 (2 s)
+tanh     alpha=1e-05 lr=0.001 best epoch 3, val AUPRC 0.103 (1 s)
+tanh     alpha=1e-05 lr=0.003 best epoch 2, val AUPRC 0.099 (1 s)
+tanh     alpha=0.001 lr=0.001 best epoch 3, val AUPRC 0.103 (1 s)
+tanh     alpha=0.001 lr=0.003 best epoch 2, val AUPRC 0.099 (1 s)
+logistic alpha=1e-05 lr=0.001 best epoch 21, val AUPRC 0.113 (5 s)
+logistic alpha=1e-05 lr=0.003 best epoch 8, val AUPRC 0.110 (3 s)
+logistic alpha=0.001 lr=0.001 best epoch 21, val AUPRC 0.113 (5 s)
+logistic alpha=0.001 lr=0.003 best epoch 8, val AUPRC 0.110 (2 s)
+activation alpha learning_rate_init  best_epoch  early_stopped  val_weighted_loss  val_auprc  val_auroc
+      relu 1e-05              0.001           6           True              0.386      0.106      0.823
+      relu 1e-05              0.003           4           True              0.387      0.104      0.823
+      relu 0.001              0.001           6           True              0.386      0.108      0.823
+      relu 0.001              0.003           4           True              0.386      0.104      0.824
+      tanh 1e-05              0.001           3           True              0.385      0.103      0.821
+      tanh 1e-05              0.003           2           True              0.384      0.099      0.824
+      tanh 0.001              0.001           3           True              0.385      0.103      0.821
+      tanh 0.001              0.003           2           True              0.384      0.099      0.824
+  logistic 1e-05              0.001          21           True              0.383      0.113      0.824
+  logistic 1e-05              0.003           8           True              0.382      0.110      0.826
+  logistic 0.001              0.001          21           True              0.383      0.113      0.824
+  logistic 0.001              0.003           8           True              0.382      0.110      0.826
+best configuration per activation
+activation alpha learning_rate_init  best_epoch  val_weighted_loss  val_auprc  val_auroc
+  logistic 0.001              0.001          21              0.383      0.113      0.824
+      relu 0.001              0.001           6              0.386      0.108      0.823
+      tanh 0.001              0.001           3              0.385      0.103      0.821
+overall best: {'activation': 'logistic', 'alpha': 0.001, 'learning_rate_init': 0.001}, best epoch 21, val AUPRC 0.113
+section 4: 27.7 s
+ seed  best_epoch  val_auroc  val_auprc
+   42          21      0.824      0.113
+   43          20      0.827      0.107
+   44          19      0.824      0.111
+   45          22      0.824      0.110
+val AUROC mean 0.825, std 0.001
+val AUPRC mean 0.111, std 0.003
+the ladder uses the seed 42 model
+section 5: 14.3 s
+threshold chosen on val (best F2): 0.4453
+wrote /Users/harnoorkaur/Downloads/Sepsis_ml/data/processed/thresholds_m7.json
+note: val metrics at a val-tuned threshold are optimistic
+model        M7_mlp
+n_features       50
+threshold     0.445
+sensitivity   0.416
+specificity   0.932
+precision     0.100
+f1            0.161
+f2            0.255
+accuracy      0.923
+alert_rate    0.074
+auroc         0.824
+auprc         0.113
+n_early                                      375.000
+share_alerted_by_first_label                   0.552
+share_alerted_any                              0.707
+median_lead_h                                 37.000
+median_timing_all_alerted_h                   25.000
+n_first_row                                   65.000
+share_alerted_any_first_row                    0.369
+n_nonseptic                                 5610.000
+share_nonseptic_ever_alerted                   0.154
+false_alert_episodes_per_100_patient_days     22.703
+ threshold  sensitivity  specificity  precision    f1    f2  share_alerted_by_first_label  false_alert_episodes_per_100_patient_days
+     0.012        0.995        0.051      0.019 0.037 0.087                         1.000                                    410.206
+     0.019        0.989        0.116      0.020 0.039 0.092                         1.000                                    386.152
+     0.027        0.981        0.181      0.021 0.042 0.098                         1.000                                    360.863
+     0.037        0.972        0.247      0.023 0.045 0.105                         1.000                                    335.158
+     0.049        0.962        0.312      0.025 0.048 0.112                         1.000                                    309.661
+     0.062        0.947        0.377      0.027 0.052 0.121                         1.000                                    284.868
+     0.076        0.930        0.442      0.029 0.057 0.131                         0.997                                    260.768
+     0.093        0.905        0.507      0.032 0.062 0.141                         0.992                                    235.745
+     0.110        0.873        0.572      0.036 0.069 0.154                         0.976                                    204.197
+     0.131        0.837        0.637      0.040 0.077 0.169                         0.952                                    168.110
+     0.162        0.798        0.702      0.046 0.088 0.188                         0.893                                    136.828
+     0.204        0.738        0.766      0.054 0.101 0.210                         0.843                                    105.106
+     0.263        0.653        0.830      0.065 0.119 0.233                         0.768                                     73.143
+     0.356        0.519        0.893      0.081 0.140 0.250                         0.648                                     41.375
+     0.527        0.333        0.955      0.119 0.176 0.245                         0.467                                     12.471
+test scored once
+model        M7_mlp
+n_features       50
+threshold     0.445
+sensitivity   0.407
+specificity   0.936
+precision     0.105
+f1            0.166
+f2            0.258
+accuracy      0.926
+alert_rate    0.070
+auroc         0.819
+auprc         0.110
+tp             1712
+fp            14658
+tn           213354
+fn             2491
+n_early                                      377.000
+share_alerted_by_first_label                   0.544
+share_alerted_any                              0.687
+median_lead_h                                 34.000
+median_timing_all_alerted_h                   21.000
+n_first_row                                   63.000
+share_alerted_any_first_row                    0.286
+n_nonseptic                                 5611.000
+share_nonseptic_ever_alerted                   0.145
+false_alert_episodes_per_100_patient_days     20.948
+test accuracy of always predicting 0: 0.9819, model accuracy: 0.9262
+[PASS] parameter count (observed 5377, expected 5377)
+[PASS] positive rows in train (observed 19530, expected 19530)
+[PASS] every epoch used all positive rows and NEG_RATIO times as many negatives (148 epochs checked)
+[PASS] val scores finite and of the right length
+[PASS] test scores finite and of the right length
+[PASS] thresholds file written before test scoring
+[PASS] val early + first-row septic patients (observed 440, expected 440)
+[PASS] val first-row septic patients (observed 65, expected 65)
+[PASS] val never-septic patients (observed 5610, expected 5610)
+[PASS] test early + first-row septic patients (observed 440, expected 440)
+[PASS] test first-row septic patients (observed 63, expected 63)
+[PASS] test never-septic patients (observed 5611, expected 5611)
+[PASS] val confusion matrix sums to the number of rows (observed 234037, expected 234037)
+[PASS] test confusion matrix sums to the number of rows (observed 232215, expected 232215)
+[PASS] no AUROC above 0.95 (val 0.824, test 0.819)
+[PASS] saved model has the best-epoch validation loss (observed 0.3832921001732593, expected 0.3832921001732593)
+section 6: 1.6 s
+[PASS] every pooled row has a cv fold from 0 to 4
+fold 0: AUROC 0.810, AUPRC 0.100, 2 s
+fold 1: AUROC 0.822, AUPRC 0.126, 2 s
+fold 2: AUROC 0.832, AUPRC 0.106, 2 s
+fold 3: AUROC 0.810, AUPRC 0.098, 2 s
+fold 4: AUROC 0.822, AUPRC 0.100, 2 s
+metric  mean   std
+ auroc 0.819 0.009
+ auprc 0.106 0.012
+note: the scaling and the core-feature selection came from train rows, which include some held-out patients, and the configuration was picked on val, so the CV scores may be slightly optimistic
+section 7: 8.7 s
+results/tables/ann_tuning.csv: 0.00 MB
+results/tables/ann_epoch_log.csv: 0.02 MB
+results/tables/ann_activation_comparison.csv: 0.00 MB
+results/tables/ann_seed_stability.csv: 0.00 MB
+results/tables/ann_results_val.csv: 0.00 MB
+results/tables/ann_alert_metrics_val.csv: 0.00 MB
+results/tables/ann_threshold_sweep_val.csv: 0.00 MB
+results/tables/ann_results_test.csv: 0.00 MB
+results/tables/ann_alert_metrics_test.csv: 0.00 MB
+results/tables/ann_cv_results.csv: 0.00 MB
+results/tables/ann_cv_summary.csv: 0.00 MB
+data/processed/thresholds_m7.json: 0.00 MB
+data/processed/scores_m7_val.parquet: 1.52 MB
+data/processed/scores_m7_test.parquet: 1.51 MB
+results/figures/fig11_learning_curves.png: 0.17 MB
+results/figures/fig11_pr_roc_test.png: 0.09 MB
+convergence warnings counted: 0
+checks: 39 passed, 0 failed

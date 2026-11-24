@@ -1,0 +1,155 @@
+mlxtend version 0.25.0
+[PASS] all needed columns exist in features_flat (missing [])
+features_flat rows 1,552,210, patient_splits rows 40,336
+[PASS] total rows (observed 1552210, expected 1552210)
+[PASS] train patients (observed 28235, expected 28235)
+[PASS] train rows (observed 1085958, expected 1085958)
+[PASS] train positive rows (observed 19530, expected 19530)
+[PASS] val patients (observed 6050, expected 6050)
+[PASS] val rows (observed 234037, expected 234037)
+[PASS] val positive rows (observed 4183, expected 4183)
+[PASS] test patients (observed 6051, expected 6051)
+[PASS] test rows (observed 232215, expected 232215)
+[PASS] test positive rows (observed 4203, expected 4203)
+[PASS] train septic patients (observed 2052, expected 2052)
+section 1: 0.5s
+23 items plus the Sepsis consequent, definitions saved
+section 2: 0.0s
+transactions 84,705 from 28,235 train patients
+positive share in sample 0.0519 (true train rate 0.0180)
+item support in the sample:
+                     support
+Labs_ge3_6h            0.535
+Age_ge65               0.467
+Unit_unknown           0.388
+Stay_early             0.386
+Stay_late              0.316
+HR_gt90                0.314
+Unit_2                 0.310
+Unit_1                 0.302
+Resp_gt20              0.275
+SIRS_ge2               0.271
+WBC_abnormal           0.270
+Platelets_lt150        0.210
+ShockIndex_gt09        0.145
+Creatinine_gt15        0.143
+SBP_lt100              0.133
+MAP_lt65               0.109
+Lactate_measured_6h    0.096
+Lactate_gt2            0.080
+Temp_lt36              0.075
+SIRS_ge3               0.072
+Sepsis                 0.052
+Temp_gt38              0.044
+Bilirubin_gt2          0.033
+O2Sat_lt92             0.029
+[PASS] at most 3 rows per patient ()
+[PASS] all sampled rows are train rows ()
+[PASS] Sepsis column equals SepsisLabel ()
+[PASS] no NaN in the item table ()
+section 3: 1.1s
+validation rows 234,037, base rate 0.0179
+               item  rows  positives  prevalence  p_sepsis_given_item  lift
+          Temp_gt38 11102        665       0.047                0.060 3.351
+           SIRS_ge3 18738        881       0.080                0.047 2.631
+Lactate_measured_6h 23909        965       0.102                0.040 2.258
+      Bilirubin_gt2 10461        401       0.045                0.038 2.145
+           SIRS_ge2 69662       2184       0.298                0.031 1.754
+        Lactate_gt2 21297        654       0.091                0.031 1.718
+    Creatinine_gt15 37705       1061       0.161                0.028 1.574
+       WBC_abnormal 68234       1892       0.292                0.028 1.551
+    ShockIndex_gt09 36515       1004       0.156                0.027 1.538
+          Resp_gt20 68983       1848       0.295                0.027 1.499
+         O2Sat_lt92  7185        191       0.031                0.027 1.487
+          Stay_late 97825       2436       0.418                0.025 1.393
+HR_gt90: validation lift 1.38, above 1
+Resp_gt20: validation lift 1.50, above 1
+Temp_gt38: validation lift 3.35, above 1
+ShockIndex_gt09: validation lift 1.54, above 1
+SIRS_ge2: validation lift 1.75, above 1
+Lactate_gt2: validation lift 1.72, above 1
+section 4: 0.4s
+min_support 0.02: 785 itemsets, 9 with Sepsis, 0.2s
+min_support 0.01: 1,856 itemsets, 55 with Sepsis, 0.5s
+min_support 0.005: 3,576 itemsets, 216 with Sepsis, 1.1s
+min_support 0.0025: 5,881 itemsets, 564 with Sepsis, 2.3s
+chosen min_support 0.0025
+rules with Sepsis as consequent, 1 to 3 antecedent items, sample lift above 1.2: 532
+saved the best 200 rules by sample lift
+                                    antecedent  support  confidence  lift
+      Stay_late AND Temp_gt38 AND Unit_unknown    0.003       0.410 7.903
+         Resp_gt20 AND Stay_late AND Temp_gt38    0.003       0.358 6.896
+          SIRS_ge3 AND Stay_late AND Temp_gt38    0.003       0.353 6.807
+      Stay_late AND Temp_gt38 AND WBC_abnormal    0.003       0.348 6.708
+       Labs_ge3_6h AND Stay_late AND Temp_gt38    0.004       0.340 6.552
+          SIRS_ge2 AND Stay_late AND Temp_gt38    0.005       0.326 6.273
+           HR_gt90 AND Stay_late AND Temp_gt38    0.003       0.320 6.171
+Lactate_measured_6h AND SIRS_ge2 AND Stay_late    0.004       0.319 6.149
+ HR_gt90 AND Lactate_measured_6h AND Stay_late    0.003       0.316 6.078
+                       Stay_late AND Temp_gt38    0.005       0.313 6.038
+[PASS] every kept rule has consequent {Sepsis} only ()
+[PASS] antecedent length between 1 and 3 ()
+[PASS] lift equals confidence / base rate in the sample (max error 0.00e+00)
+section 5: 4.6s
+sample confidence median 0.171, validation confidence median 0.052
+sample lift median 3.30, validation lift median 2.88
+candidates 200, holding up on validation 200
+pruned 51 redundant rules, 149 validated rules remain
+validated rules written before the test rows are used
+top 15 validated rules:
+1. if Stay_late and Temp_gt38 and WBC_abnormal then sepsis: validation lift 5.64, confidence 0.101, matched 2,231, positives 225
+2. if Labs_ge3_6h and Stay_late and Temp_gt38 then sepsis: validation lift 5.52, confidence 0.099, matched 3,165, positives 312
+3. if Stay_late and Temp_gt38 and Unit_unknown then sepsis: validation lift 5.39, confidence 0.096, matched 2,356, positives 227
+4. if Labs_ge3_6h and Lactate_measured_6h and SIRS_ge3 then sepsis: validation lift 5.35, confidence 0.096, matched 2,989, positives 286
+5. if Lactate_measured_6h and SIRS_ge3 then sepsis: validation lift 5.35, confidence 0.096, matched 3,012, positives 288
+6. if Lactate_measured_6h and SIRS_ge2 and Stay_late then sepsis: validation lift 5.26, confidence 0.094, matched 3,510, positives 330
+7. if Resp_gt20 and Stay_late and Temp_gt38 then sepsis: validation lift 5.23, confidence 0.094, matched 2,577, positives 241
+8. if SIRS_ge3 and Stay_late and Temp_gt38 then sepsis: validation lift 5.05, confidence 0.090, matched 2,602, positives 235
+9. if SIRS_ge2 and Stay_late and Temp_gt38 then sepsis: validation lift 4.87, confidence 0.087, matched 4,473, positives 389
+10. if Lactate_measured_6h and Stay_late and WBC_abnormal then sepsis: validation lift 4.82, confidence 0.086, matched 3,642, positives 314
+11. if HR_gt90 and Lactate_measured_6h and Stay_late then sepsis: validation lift 4.81, confidence 0.086, matched 3,277, positives 282
+12. if Stay_late and Temp_gt38 then sepsis: validation lift 4.71, confidence 0.084, matched 5,350, positives 450
+13. if Labs_ge3_6h and SIRS_ge3 and Temp_gt38 then sepsis: validation lift 4.47, confidence 0.080, matched 3,402, positives 272
+14. if SIRS_ge3 and Temp_gt38 and WBC_abnormal then sepsis: validation lift 4.46, confidence 0.080, matched 3,113, positives 248
+15. if Age_ge65 and SIRS_ge2 and Temp_gt38 then sepsis: validation lift 4.36, confidence 0.078, matched 3,248, positives 253
+[PASS] validation row count (observed 234037, expected 234037)
+[PASS] validation base rate (observed 0.017873242265111926, expected 0.0179)
+[PASS] pruned rules have unique antecedents ()
+[PASS] manual mask count, rule 130 (observed 5282, expected 5282)
+[PASS] manual mask count, rule 17 (observed 4530, expected 4530)
+[PASS] manual mask count, rule 154 (observed 15613, expected 15613)
+section 6: 0.3s
+rule score on validation (optimistic): AUROC 0.582, AUPRC 0.036, base rate 0.0179
+section 7: 0.1s
+test scored once: 232,215 rows, base rate 0.0181
+split  auroc  auprc  base_rate  rows_matching_any_rule_share
+  val  0.582  0.036      0.018                         0.047
+ test  0.562  0.029      0.018                         0.045
+confirmed rules: 149 of 149 validated
+top confirmed rules:
+1. if Stay_late and Temp_gt38 and WBC_abnormal then sepsis: validation lift 5.64, confidence 0.101, matched 2,231, positives 225; test lift 3.48, matched 2,077, positives 131
+2. if Labs_ge3_6h and Stay_late and Temp_gt38 then sepsis: validation lift 5.52, confidence 0.099, matched 3,165, positives 312; test lift 4.89, matched 2,861, positives 253
+3. if Stay_late and Temp_gt38 and Unit_unknown then sepsis: validation lift 5.39, confidence 0.096, matched 2,356, positives 227; test lift 4.00, matched 2,057, positives 149
+4. if Labs_ge3_6h and Lactate_measured_6h and SIRS_ge3 then sepsis: validation lift 5.35, confidence 0.096, matched 2,989, positives 286; test lift 3.82, matched 3,093, positives 214
+5. if Lactate_measured_6h and SIRS_ge3 then sepsis: validation lift 5.35, confidence 0.096, matched 3,012, positives 288; test lift 3.83, matched 3,129, positives 217
+6. if Lactate_measured_6h and SIRS_ge2 and Stay_late then sepsis: validation lift 5.26, confidence 0.094, matched 3,510, positives 330; test lift 4.74, matched 3,284, positives 282
+7. if Resp_gt20 and Stay_late and Temp_gt38 then sepsis: validation lift 5.23, confidence 0.094, matched 2,577, positives 241; test lift 4.97, matched 2,133, positives 192
+8. if SIRS_ge3 and Stay_late and Temp_gt38 then sepsis: validation lift 5.05, confidence 0.090, matched 2,602, positives 235; test lift 3.69, matched 2,473, positives 165
+9. if SIRS_ge2 and Stay_late and Temp_gt38 then sepsis: validation lift 4.87, confidence 0.087, matched 4,473, positives 389; test lift 3.83, matched 3,992, positives 277
+10. if Lactate_measured_6h and Stay_late and WBC_abnormal then sepsis: validation lift 4.82, confidence 0.086, matched 3,642, positives 314; test lift 3.97, matched 3,783, positives 272
+[PASS] validated rules file written before the test evaluation ()
+section 8: 0.6s
+data/processed/ar_items_definition.json: 0.001 MB
+data/processed/ar_transactions_train.parquet: 0.225 MB
+data/processed/ar_rules_validated.json: 0.016 MB
+results/tables/ar_item_lift_val.csv: 0.002 MB
+results/tables/ar_item_lift_test.csv: 0.002 MB
+results/tables/ar_support_sweep.csv: 0.000 MB
+results/tables/ar_rules_train.csv: 0.020 MB
+results/tables/ar_rules_validated.csv: 0.037 MB
+results/tables/ar_rule_scoring.csv: 0.000 MB
+results/figures/fig10_item_lift.png: 0.082 MB
+results/figures/fig10_rules_lift_scatter.png: 0.082 MB
+results/figures/fig10_top_rules.png: 0.089 MB
+[PASS] all output files present (0 missing)
+checks: 27 passed, 0 failed

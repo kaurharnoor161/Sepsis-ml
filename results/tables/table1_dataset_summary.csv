@@ -1,0 +1,4 @@
+name,patients,rows,septic patients,septic patients %,positive rows,positive rows %,median stay (hours),mean stay (hours)
+Overall,40336,1552210,2932,7.269,27916,1.798,38.0,38.482
+Hospital A,20336,790215,1790,8.802,17136,2.169,39.0,38.858
+Hospital B,20000,761995,1142,5.71,10780,1.415,38.0,38.1

@@ -1,0 +1,10 @@
+check,violations,status,detail
+ICULOS strictly increasing within patient,0,pass,
+ICULOS has no missing values,0,pass,
+label never goes from 1 back to 0,0,pass,
+"no duplicated (patient_id, hour) pairs",0,pass,
+Unit1 and Unit2 never both 1,0,pass,
+Unit1 and Unit2 both missing (rows),611960,info,(39.43% of rows)
+Gender only 0 or 1 (or missing),0,pass,
+Age within 0 to 100,0,pass,"(min 14.0, max 100.0)"
+HospAdmTime not positive,8513,fail,"(min -5366.86, max 23.99)"

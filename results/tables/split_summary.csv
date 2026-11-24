@@ -1,0 +1,5 @@
+split,patients,rows,patients_share_pct,septic_patients,septic_pct,positive_rows,positive_rows_pct,hospital_A_pct,hospital_B_pct,median_stay_rows,stays_under_24_pct,median_first_positive_hour,septic_labelled_in_first_row
+train,28235,1085958,70.0,2052,7.268,19530,1.798,50.416,49.584,39.0,24.179,27.0,298
+val,6050,234037,14.999,440,7.273,4183,1.787,50.413,49.587,39.0,23.388,29.5,65
+test,6051,232215,15.001,440,7.272,4203,1.81,50.421,49.579,38.0,23.682,28.5,63
+all,40336,1552210,100.0,2932,7.269,27916,1.798,50.417,49.583,38.0,23.986,28.0,426

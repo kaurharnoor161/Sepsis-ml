@@ -1,0 +1,118 @@
+ROOT = /Users/harnoorkaur/Downloads/Sepsis_ml
+[PASS] rows in features_flat (observed 1552210, expected 1552210)
+[PASS] columns in features_flat (observed 244, expected 244)
+[PASS] column order is ID_COLS + features + target
+[PASS] feature count and set match feature_sets['all']
+[PASS] value columns (8 vitals, 26 labs)
+[PASS] train patients (observed 28235, expected 28235)
+[PASS] train rows (observed 1085958, expected 1085958)
+[PASS] val patients (observed 6050, expected 6050)
+[PASS] val rows (observed 234037, expected 234037)
+[PASS] test patients (observed 6051, expected 6051)
+[PASS] test rows (observed 232215, expected 232215)
+[PASS] positive rows (observed 27916, expected 27916)
+[PASS] patient_splits split agrees with split column
+[PASS] cv_fold is -1 for test and 0 to 4 otherwise
+[PASS] forced features exist (11 forced)
+train rows 1,085,958, val rows 234,037, test rows 232,215
+[PASS] rate rows aligned with features_flat
+[PASS] rate columns (observed 35, expected 35)
+[PASS] per-variable rates in [0, 1] (min 0.000, max 1.000)
+[PASS] rate_labs in [0, 26] (min 0.000, max 25.000)
+[PASS] no NaN in rate features
+rate features: 1.3 s
+AUROC ICULOS 0.630, hour 0.631, n_labs_so_far 0.673, rate_labs 0.588
+34 of 34 variables lose AUROC when count is replaced by rate; n_labs_so_far pooled 0.673, within hour bins: 0-5 0.554, 6-11 0.572, 12-23 0.599, 24-47 0.653, 48+ 0.632
+time-confound analysis: 2.5 s
+[PASS] univariate AUROC table covers all 239 features
+spearman matrix: 5.0 s
+filter kept 200 of 274 candidates, dropped 74
+Spearman Hgb-Hct 0.917
+Spearman MAP-DBP 0.736
+forced pairs above 0.90: none
+[PASS] no kept non-forced pair above 0.90 (max 0.899)
+pool random forest: 36.6 s
+Spearman between AUROC rank and RF rank: 0.581
+core set by group: count 13, value 9, extreme 8, rolling 8, time_since 6, missingness_agg 2, clinical 2, static 2
+ICULOS: filtered out
+HospAdmTime: not selected
+unit_1: not selected
+unit_2: not selected
+unit_unknown: not selected
+cnt_ features selected: ['cnt_MAP', 'cnt_WBC', 'cnt_BUN', 'cnt_Phosphate', 'cnt_FiO2', 'cnt_Lactate', 'cnt_DBP', 'cnt_Calcium', 'cnt_Magnesium', 'cnt_Temp', 'cnt_PaCO2', 'cnt_Hct', 'cnt_Chloride']
+rate_ features selected: []
+[PASS] core size between 30 and 60 (50 features)
+[PASS] all forced features in core
+[PASS] no id or target column in core
+[PASS] core names exist in features_flat or rate_features
+[PASS] core has no duplicates
+core random forest and validation scoring: 19.6 s
+49 standardised columns, 1 binary columns, 16 log1p columns
+[PASS] no NaN or inf in core_scaled
+[PASS] train mean within 1e-3 of 0 (worst 1.92e-08)
+[PASS] train std within 1e-3 of 1 (worst 2.42e-08)
+[PASS] core_scaled aligned with features_flat
+val: largest |std - 1|
+val: largest |mean|
+test: largest |std - 1|
+test: largest |mean|
+scaled core table: 6.3 s
+29 components keep 0.951 of the variance
+[PASS] pca scores aligned with features_flat
+[PASS] pca.n_samples_ equals train row count (observed 1085958, expected 1085958)
+[PASS] train rows (observed 1085958, expected 1085958)
+[PASS] cumulative explained variance at least 0.95 (0.9511)
+pca: 1.3 s
+[PASS] every subset row is a train row
+[PASS] every train positive row is in the subset
+[PASS] no duplicate row_index
+[PASS] subset size (observed 100000, expected 100000)
+subset positive share 0.195 against 0.0180 in the full train rows, so probabilities from models trained on it are not calibrated and thresholds must be chosen on the full validation rows
+all: 239
+no_missingness: 134
+no_icu_time: 237
+vitals_only: 123
+raw_values: 41
+raw_values_with_missingness: 109
+cnt_cols: 35
+rate_cols: 35
+all_plus_rates: 274
+with_counts: 239
+with_rates: 239
+no_counts_no_rates: 204
+core: 50
+core_no_icu_time: 50
+masks_only: 34
+pca_cols: 29
+[PASS] every set member exists in features_flat or rate_features
+[PASS] pca_cols exist in pca_scores
+[PASS] count and rate sets share no feature
+[PASS] with_rates has no count columns and no_counts_no_rates has no rate columns
+data/processed/rate_features.parquet  28.04 MB
+data/processed/filtered_features.json  0.00 MB
+data/processed/core_features.json  0.00 MB
+data/processed/core_scaled.parquet  37.56 MB
+data/processed/core_scale_params.joblib  0.00 MB
+data/processed/core_pca.joblib  0.01 MB
+data/processed/pca_scores.parquet  213.46 MB
+data/processed/train_subset_index.parquet  1.00 MB
+data/processed/train_subset_core_scaled.parquet  4.80 MB
+data/processed/train_subset_pca.parquet  17.76 MB
+data/processed/feature_sets_v2.json  0.03 MB
+results/tables/rate_vs_count_auroc.csv  0.00 MB
+results/tables/count_vs_rate_by_hour_bin.csv  0.00 MB
+results/tables/correlation_spearman_features.csv  0.48 MB
+results/tables/redundancy_drops.csv  0.00 MB
+results/tables/feature_group_counts_by_stage.csv  0.00 MB
+results/tables/core_feature_ranking.csv  0.01 MB
+results/tables/core_vs_pool_rf.csv  0.00 MB
+results/tables/core_scaled_shift_val_test.csv  0.00 MB
+results/tables/pca_variance.csv  0.00 MB
+results/tables/pca_top_loadings.csv  0.00 MB
+results/tables/subset_summary.csv  0.00 MB
+results/figures/fig06_count_vs_rate.png  0.09 MB
+results/figures/fig06_group_counts.png  0.04 MB
+results/figures/fig06_rf_importance_top30.png  0.11 MB
+results/figures/fig06_pca_variance.png  0.06 MB
+[PASS] all expected output files exist (0 missing)
+checks: 44 passed, 0 failed

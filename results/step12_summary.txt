@@ -1,0 +1,204 @@
+root: /Users/harnoorkaur/Downloads/Sepsis_ml
+FAST=False, folds=[0, 1, 2, 3, 4], E1 rows=250000, E2 rows=500000, E3 rows=400000, trees=100
+[PASS] rows in features_flat (observed 1552210, expected 1552210)
+[PASS] input: pool patients (observed 34285, expected 34285)
+[PASS] input: pool rows (observed 1319995, expected 1319995)
+[PASS] input: cv_fold is 0 to 4 exactly on the pool patients
+[PASS] input: held-out parts of the five folds partition the pool patients (6857, 6857, 6857, 6857, 6857)
+[PASS] rate_features is row-aligned with features_flat (1552210 rows)
+[PASS] size of raw_values (observed 41, expected 41)
+[PASS] size of raw_values_with_missingness (observed 109, expected 109)
+[PASS] size of no_missingness (observed 134, expected 134)
+[PASS] size of all (observed 239, expected 239)
+[PASS] size of with_rates (observed 239, expected 239)
+[PASS] size of no_counts_no_rates (observed 204, expected 204)
+[PASS] size of no_icu_time (observed 237, expected 237)
+[PASS] size of vitals_only (observed 123, expected 123)
+[PASS] size of core (observed 50, expected 50)
+[PASS] size of cnt_cols (observed 35, expected 35)
+[PASS] size of rate_cols (observed 35, expected 35)
+[PASS] size of masks_only (observed 34, expected 34)
+[PASS] pool positive row rate (observed 0.018, expected 0.018)
+[PASS] row-level positive rate, hospital A (observed 0.0217, expected 0.0217)
+[PASS] row-level positive rate, hospital B (observed 0.0141, expected 0.0141)
+[PASS] patients in hospital A (observed 20336, expected 20336)
+[PASS] septic patient rate, hospital A (observed 0.088, expected 0.088)
+[PASS] patients in hospital B (observed 20000, expected 20000)
+[PASS] septic patient rate, hospital B (observed 0.0571, expected 0.0571)
+section 1: 0.7 s
+[PASS] members of all exist in the parquet files (239 features)
+[PASS] members of no_missingness exist in the parquet files (134 features)
+[PASS] members of no_icu_time exist in the parquet files (237 features)
+[PASS] members of vitals_only exist in the parquet files (123 features)
+[PASS] members of raw_values exist in the parquet files (41 features)
+[PASS] members of raw_values_with_missingness exist in the parquet files (109 features)
+[PASS] members of cnt_cols exist in the parquet files (35 features)
+[PASS] members of rate_cols exist in the parquet files (35 features)
+[PASS] members of all_plus_rates exist in the parquet files (274 features)
+[PASS] members of with_counts exist in the parquet files (239 features)
+[PASS] members of with_rates exist in the parquet files (239 features)
+[PASS] members of no_counts_no_rates exist in the parquet files (204 features)
+[PASS] members of core exist in the parquet files (50 features)
+[PASS] members of core_no_icu_time exist in the parquet files (50 features)
+[PASS] members of masks_only exist in the parquet files (34 features)
+[FAIL] members of pca_cols exist in the parquet files (29 features, missing ['PC1', 'PC2', 'PC3'])
+[PASS] members of counts_only exist in the parquet files (35 features)
+[PASS] members of rates_only exist in the parquet files (35 features)
+[PASS] members of time_only exist in the parquet files (2 features)
+[PASS] members of core_no_counts exist in the parquet files (36 features)
+[PASS] members of all_no_hospital_habits exist in the parquet files (234 features)
+section 2: 0.0 s
+pool: 34285 patients, 1319995 rows, 274 columns, 1.80% positive rows
+pool array 1.45 GB, peak process memory 3361 MB
+section 3: 6.9 s
+E1: 13 sets x 2 models x 5 folds, 130 fits already in the csv
+E1 csv: 130 fits, 0 convergence warnings counted so far
+section 4: 3.0 s
+missingness_raw [logistic regression]: raw_values_with_missingness minus raw_values: mean AUROC diff +0.0566, mean AUPRC diff +0.0270, A better in 5 of 5 folds (AUROC) and 5 of 5 folds (AUPRC)
+missingness_raw [random forest]: raw_values_with_missingness minus raw_values: mean AUROC diff +0.0074, mean AUPRC diff +0.0053, A better in 5 of 5 folds (AUROC) and 5 of 5 folds (AUPRC)
+missingness_all [logistic regression]: all minus no_missingness: mean AUROC diff +0.0364, mean AUPRC diff +0.0188, A better in 5 of 5 folds (AUROC) and 5 of 5 folds (AUPRC)
+missingness_all [random forest]: all minus no_missingness: mean AUROC diff +0.0122, mean AUPRC diff +0.0038, A better in 5 of 5 folds (AUROC) and 5 of 5 folds (AUPRC)
+rates_vs_counts_isolated [logistic regression]: rates_only minus counts_only: mean AUROC diff -0.0536, mean AUPRC diff -0.0289, A better in 0 of 5 folds (AUROC) and 0 of 5 folds (AUPRC)
+rates_vs_counts_isolated [random forest]: rates_only minus counts_only: mean AUROC diff -0.0308, mean AUPRC diff -0.0203, A better in 0 of 5 folds (AUROC) and 0 of 5 folds (AUPRC)
+counts_vs_time [logistic regression]: counts_only minus time_only: mean AUROC diff +0.0981, mean AUPRC diff +0.0033, A better in 5 of 5 folds (AUROC) and 4 of 5 folds (AUPRC)
+counts_vs_time [random forest]: counts_only minus time_only: mean AUROC diff +0.0569, mean AUPRC diff +0.0118, A better in 5 of 5 folds (AUROC) and 5 of 5 folds (AUPRC)
+replace_counts_by_rates [logistic regression]: with_rates minus all: mean AUROC diff +0.0013, mean AUPRC diff -0.0002, A better in 4 of 5 folds (AUROC) and 2 of 5 folds (AUPRC)
+replace_counts_by_rates [random forest]: with_rates minus all: mean AUROC diff +0.0010, mean AUPRC diff -0.0013, A better in 4 of 5 folds (AUROC) and 2 of 5 folds (AUPRC)
+drop_counts [logistic regression]: no_counts_no_rates minus all: mean AUROC diff -0.0054, mean AUPRC diff -0.0000, A better in 0 of 5 folds (AUROC) and 2 of 5 folds (AUPRC)
+drop_counts [random forest]: no_counts_no_rates minus all: mean AUROC diff +0.0008, mean AUPRC diff +0.0002, A better in 2 of 5 folds (AUROC) and 3 of 5 folds (AUPRC)
+core_counts [logistic regression]: core minus core_no_counts: mean AUROC diff +0.0239, mean AUPRC diff +0.0036, A better in 5 of 5 folds (AUROC) and 5 of 5 folds (AUPRC)
+core_counts [random forest]: core minus core_no_counts: mean AUROC diff +0.0033, mean AUPRC diff +0.0024, A better in 5 of 5 folds (AUROC) and 4 of 5 folds (AUPRC)
+icu_time_shortcut [logistic regression]: all minus no_icu_time: mean AUROC diff +0.0009, mean AUPRC diff +0.0002, A better in 4 of 5 folds (AUROC) and 5 of 5 folds (AUPRC)
+icu_time_shortcut [random forest]: all minus no_icu_time: mean AUROC diff +0.0011, mean AUPRC diff -0.0006, A better in 4 of 5 folds (AUROC) and 1 of 5 folds (AUPRC)
+labs_vs_vitals [logistic regression]: all minus vitals_only: mean AUROC diff +0.0456, mean AUPRC diff +0.0189, A better in 5 of 5 folds (AUROC) and 5 of 5 folds (AUPRC)
+labs_vs_vitals [random forest]: all minus vitals_only: mean AUROC diff +0.0291, mean AUPRC diff +0.0048, A better in 5 of 5 folds (AUROC) and 4 of 5 folds (AUPRC)
+engineered_vs_raw [logistic regression]: all minus raw_values: mean AUROC diff +0.0789, mean AUPRC diff +0.0345, A better in 5 of 5 folds (AUROC) and 5 of 5 folds (AUPRC)
+engineered_vs_raw [random forest]: all minus raw_values: mean AUROC diff +0.0087, mean AUPRC diff +0.0076, A better in 5 of 5 folds (AUROC) and 5 of 5 folds (AUPRC)
+core_vs_all [logistic regression]: core minus all: mean AUROC diff -0.0282, mean AUPRC diff -0.0122, A better in 0 of 5 folds (AUROC) and 0 of 5 folds (AUPRC)
+core_vs_all [random forest]: core minus all: mean AUROC diff -0.0074, mean AUPRC diff -0.0043, A better in 0 of 5 folds (AUROC) and 0 of 5 folds (AUPRC)
+section 5: 0.8 s
+E2: 3 settings x 2 models x 5 folds, 9 fits already in the csv
+none          random_forest        fold 4  auroc 0.824  auprc 0.094  sens@90 0.497  40s
+class_weight  logistic_regression  fold 0  auroc 0.771  auprc 0.073  sens@90 0.434  2s
+class_weight  logistic_regression  fold 1  auroc 0.788  auprc 0.087  sens@90 0.481  2s
+class_weight  logistic_regression  fold 2  auroc 0.799  auprc 0.092  sens@90 0.481  2s
+class_weight  logistic_regression  fold 3  auroc 0.767  auprc 0.074  sens@90 0.442  3s
+class_weight  logistic_regression  fold 4  auroc 0.783  auprc 0.091  sens@90 0.467  2s
+class_weight  random_forest        fold 0  auroc 0.821  auprc 0.091  sens@90 0.499  37s
+class_weight  random_forest        fold 1  auroc 0.827  auprc 0.112  sens@90 0.527  44s
+class_weight  random_forest        fold 2  auroc 0.839  auprc 0.106  sens@90 0.540  38s
+class_weight  random_forest        fold 3  auroc 0.822  auprc 0.106  sens@90 0.515  54s
+class_weight  random_forest        fold 4  auroc 0.828  auprc 0.093  sens@90 0.507  43s
+downsample    logistic_regression  fold 0  auroc 0.767  auprc 0.074  sens@90 0.439  0s
+downsample    logistic_regression  fold 1  auroc 0.785  auprc 0.089  sens@90 0.475  0s
+downsample    logistic_regression  fold 2  auroc 0.798  auprc 0.094  sens@90 0.482  0s
+downsample    logistic_regression  fold 3  auroc 0.765  auprc 0.078  sens@90 0.449  0s
+downsample    logistic_regression  fold 4  auroc 0.776  auprc 0.094  sens@90 0.470  0s
+downsample    random_forest        fold 0  auroc 0.816  auprc 0.089  sens@90 0.495  4s
+downsample    random_forest        fold 1  auroc 0.825  auprc 0.110  sens@90 0.523  5s
+downsample    random_forest        fold 2  auroc 0.834  auprc 0.105  sens@90 0.533  4s
+downsample    random_forest        fold 3  auroc 0.816  auprc 0.101  sens@90 0.512  4s
+downsample    random_forest        fold 4  auroc 0.819  auprc 0.091  sens@90 0.487  4s
+note: AUROC, AUPRC and sensitivity at 90% specificity only use the order of the scores, so class weighting moves them little; what changes is where the thresholds sit.
+section 6: 304.1 s
+E3 A_to_B: train 400000 rows, in-hospital val 118903 rows, other hospital 761995 rows, 8 fits to run
+A_to_B core                     logistic_regression  auroc 0.795 -> 0.687  auprc 0.105 -> 0.048  2s
+A_to_B core                     random_forest        auroc 0.815 -> 0.801  auprc 0.108 -> 0.060  28s
+A_to_B all                      logistic_regression  auroc 0.804 -> 0.725  auprc 0.115 -> 0.056  11s
+A_to_B all                      random_forest        auroc 0.819 -> 0.810  auprc 0.113 -> 0.063  60s
+A_to_B vitals_only              logistic_regression  auroc 0.778 -> 0.542  auprc 0.105 -> 0.032  5s
+A_to_B vitals_only              random_forest        auroc 0.794 -> 0.773  auprc 0.116 -> 0.063  45s
+A_to_B all_no_hospital_habits   logistic_regression  auroc 0.799 -> 0.722  auprc 0.113 -> 0.055  10s
+A_to_B all_no_hospital_habits   random_forest        auroc 0.816 -> 0.806  auprc 0.111 -> 0.061  61s
+E3 B_to_A: train 400000 rows, in-hospital val 115003 rows, other hospital 790215 rows, 8 fits to run
+B_to_A core                     logistic_regression  auroc 0.784 -> 0.720  auprc 0.080 -> 0.068  2s
+B_to_A core                     random_forest        auroc 0.829 -> 0.771  auprc 0.105 -> 0.089  26s
+B_to_A all                      logistic_regression  auroc 0.817 -> 0.728  auprc 0.100 -> 0.063  11s
+B_to_A all                      random_forest        auroc 0.849 -> 0.774  auprc 0.109 -> 0.088  50s
+B_to_A vitals_only              logistic_regression  auroc 0.776 -> 0.713  auprc 0.052 -> 0.063  6s
+B_to_A vitals_only              random_forest        auroc 0.826 -> 0.758  auprc 0.087 -> 0.089  44s
+B_to_A all_no_hospital_habits   logistic_regression  auroc 0.810 -> 0.717  auprc 0.097 -> 0.058  11s
+B_to_A all_no_hospital_habits   random_forest        auroc 0.833 -> 0.773  auprc 0.102 -> 0.089  50s
+A_to_B core [logistic regression]: AUROC 0.795 to 0.687 (drop +0.107), AUPRC 0.105 to 0.048 (drop +0.058)
+A_to_B core [random forest]: AUROC 0.815 to 0.801 (drop +0.014), AUPRC 0.108 to 0.060 (drop +0.048)
+A_to_B all [logistic regression]: AUROC 0.804 to 0.725 (drop +0.079), AUPRC 0.115 to 0.056 (drop +0.059)
+A_to_B all [random forest]: AUROC 0.819 to 0.810 (drop +0.009), AUPRC 0.113 to 0.063 (drop +0.051)
+A_to_B vitals_only [logistic regression]: AUROC 0.778 to 0.542 (drop +0.236), AUPRC 0.105 to 0.032 (drop +0.072)
+A_to_B vitals_only [random forest]: AUROC 0.794 to 0.773 (drop +0.021), AUPRC 0.116 to 0.063 (drop +0.053)
+A_to_B all_no_hospital_habits [logistic regression]: AUROC 0.799 to 0.722 (drop +0.078), AUPRC 0.113 to 0.055 (drop +0.058)
+A_to_B all_no_hospital_habits [random forest]: AUROC 0.816 to 0.806 (drop +0.010), AUPRC 0.111 to 0.061 (drop +0.050)
+B_to_A core [logistic regression]: AUROC 0.784 to 0.720 (drop +0.064), AUPRC 0.080 to 0.068 (drop +0.013)
+B_to_A core [random forest]: AUROC 0.829 to 0.771 (drop +0.058), AUPRC 0.105 to 0.089 (drop +0.016)
+B_to_A all [logistic regression]: AUROC 0.817 to 0.728 (drop +0.089), AUPRC 0.100 to 0.063 (drop +0.037)
+B_to_A all [random forest]: AUROC 0.849 to 0.774 (drop +0.075), AUPRC 0.109 to 0.088 (drop +0.021)
+B_to_A vitals_only [logistic regression]: AUROC 0.776 to 0.713 (drop +0.063), AUPRC 0.052 to 0.063 (drop -0.011)
+B_to_A vitals_only [random forest]: AUROC 0.826 to 0.758 (drop +0.069), AUPRC 0.087 to 0.089 (drop -0.002)
+B_to_A all_no_hospital_habits [logistic regression]: AUROC 0.810 to 0.717 (drop +0.093), AUPRC 0.097 to 0.058 (drop +0.039)
+B_to_A all_no_hospital_habits [random forest]: AUROC 0.833 to 0.773 (drop +0.060), AUPRC 0.102 to 0.089 (drop +0.013)
+section 7: 477.5 s
+[PASS] scores_m0_m3_test aligned with the first file on patient_id, hour and label (232215 rows)
+[PASS] scores_m4_m6_test aligned with the first file on patient_id, hour and label (232215 rows)
+[PASS] scores_m7_test aligned with the first file on patient_id, hour and label (232215 rows)
+[PASS] scores_m0_m3_val aligned with the first file on patient_id, hour and label (234037 rows)
+[PASS] scores_m4_m6_val aligned with the first file on patient_id, hour and label (234037 rows)
+[PASS] scores_m7_val aligned with the first file on patient_id, hour and label (234037 rows)
+[PASS] every scored test patient has a hospital
+[PASS] scored test patients are the test-split patients (6051 patients)
+section 8: 2.0 s
+[PASS] final: pool patients (observed 34285, expected 34285)
+[PASS] final: pool rows (observed 1319995, expected 1319995)
+[PASS] final: cv_fold is 0 to 4 exactly on the pool patients
+[PASS] final: held-out parts of the five folds partition the pool patients (6857, 6857, 6857, 6857, 6857)
+[PASS] fold 0, E1: training and held-out patients are disjoint (250000 train rows, 262264 held-out rows)
+[PASS] fold 0, E2 none: training and held-out patients are disjoint (500000 train rows, 262264 held-out rows)
+[PASS] fold 0, E2 downsample: training and held-out patients are disjoint (94845 train rows, 262264 held-out rows)
+[PASS] fold 1, E1: training and held-out patients are disjoint (250000 train rows, 265600 held-out rows)
+[PASS] fold 1, E2 none: training and held-out patients are disjoint (500000 train rows, 265600 held-out rows)
+[PASS] fold 1, E2 downsample: training and held-out patients are disjoint (94795 train rows, 265600 held-out rows)
+[PASS] fold 2, E1: training and held-out patients are disjoint (250000 train rows, 265169 held-out rows)
+[PASS] fold 2, E2 none: training and held-out patients are disjoint (500000 train rows, 265169 held-out rows)
+[PASS] fold 2, E2 downsample: training and held-out patients are disjoint (94750 train rows, 265169 held-out rows)
+[PASS] fold 3, E1: training and held-out patients are disjoint (250000 train rows, 263736 held-out rows)
+[PASS] fold 3, E2 none: training and held-out patients are disjoint (500000 train rows, 263736 held-out rows)
+[PASS] fold 3, E2 downsample: training and held-out patients are disjoint (94910 train rows, 263736 held-out rows)
+[PASS] fold 4, E1: training and held-out patients are disjoint (250000 train rows, 263226 held-out rows)
+[PASS] fold 4, E2 none: training and held-out patients are disjoint (500000 train rows, 263226 held-out rows)
+[PASS] fold 4, E2 downsample: training and held-out patients are disjoint (94960 train rows, 263226 held-out rows)
+[PASS] E1 fold 0: one training-row hash across 26 fits (1 distinct)
+[PASS] E1 fold 1: one training-row hash across 26 fits (1 distinct)
+[PASS] E1 fold 2: one training-row hash across 26 fits (1 distinct)
+[PASS] E1 fold 3: one training-row hash across 26 fits (1 distinct)
+[PASS] E1 fold 4: one training-row hash across 26 fits (1 distinct)
+[PASS] E2 fold 0: none and class_weight share rows, downsample shares rows across models
+[PASS] E2 fold 1: none and class_weight share rows, downsample shares rows across models
+[PASS] E2 fold 2: none and class_weight share rows, downsample shares rows across models
+[PASS] E2 fold 3: none and class_weight share rows, downsample shares rows across models
+[PASS] E2 fold 4: none and class_weight share rows, downsample shares rows across models
+[PASS] E1 rows in the folds file (observed 130, expected 130)
+[PASS] E2 rows in the folds file (observed 30, expected 30)
+[PASS] E3 rows in the cross-hospital file (observed 32, expected 32)
+[PASS] E4 rows in the hospital-wise file (observed 24, expected 24)
+[PASS] E1: no AUROC above 0.95 (max 0.845)
+[PASS] E2: no AUROC above 0.95 (max 0.839)
+[PASS] E3: no AUROC above 0.95 (max 0.849)
+[PASS] E4: no AUROC above 0.95 (max 0.868)
+[PASS] A_to_B: train, val and test patients are disjoint
+[PASS] A_to_B: test group is exactly hospital B (20000 patients)
+[PASS] B_to_A: train, val and test patients are disjoint
+[PASS] B_to_A: test group is exactly hospital A (20336 patients)
+[PASS] saved data/processed/feature_sets_v3.json (0.03 MB)
+[PASS] saved results/tables/ablation_feature_set_definitions.csv (0.00 MB)
+[PASS] saved results/tables/ablation_feature_sets_folds.csv (0.02 MB)
+[PASS] saved results/tables/ablation_feature_sets_summary.csv (0.00 MB)
+[PASS] saved results/tables/ablation_paired_differences.csv (0.01 MB)
+[PASS] saved results/tables/ablation_imbalance_folds.csv (0.00 MB)
+[PASS] saved results/tables/ablation_imbalance_summary.csv (0.00 MB)
+[PASS] saved results/tables/ablation_cross_hospital.csv (0.01 MB)
+[PASS] saved results/tables/ablation_hospital_wise_test.csv (0.00 MB)
+[PASS] saved results/figures/fig12_feature_set_ablation.png (0.10 MB)
+[PASS] saved results/figures/fig12_paired_differences.png (0.08 MB)
+[PASS] saved results/figures/fig12_imbalance.png (0.05 MB)
+[PASS] saved results/figures/fig12_cross_hospital.png (0.15 MB)
+[PASS] saved results/figures/fig12_hospital_wise_test.png (0.08 MB)
+convergence warnings counted: 0
+checks: 108 passed, 1 failed

@@ -1,0 +1,288 @@
+root: /Users/harnoorkaur/Downloads/Sepsis_ml
+[PASS] total rows (observed 1552210, expected 1552210)
+[PASS] train patients (observed 28235, expected 28235)
+[PASS] train rows (observed 1085958, expected 1085958)
+[PASS] train pos (observed 19530, expected 19530)
+[PASS] val patients (observed 6050, expected 6050)
+[PASS] val rows (observed 234037, expected 234037)
+[PASS] val pos (observed 4183, expected 4183)
+[PASS] test patients (observed 6051, expected 6051)
+[PASS] test rows (observed 232215, expected 232215)
+[PASS] test pos (observed 4203, expected 4203)
+[PASS] train septic patients (observed 2052, expected 2052)
+[PASS] train first-row septic patients (observed 298, expected 298)
+[PASS] val septic patients (observed 440, expected 440)
+[PASS] val first-row septic patients (observed 65, expected 65)
+[PASS] test septic patients (observed 440, expected 440)
+[PASS] test first-row septic patients (observed 63, expected 63)
+[PASS] patient_id unique in patient_splits (40336 patients)
+[PASS] patients in features match patient_splits ()
+[PASS] core_scaled row-aligned with features_flat (1552210 rows)
+[PASS] core has 50 and all has 239 names (50 and 239)
+[PASS] core and all lists unique ()
+[PASS] no forbidden column in CORE or ALL ()
+[PASS] core is a subset of all ()
+[PASS] core matches feature_sets_v2 core ()
+[PASS] columns present in features_flat and core_scaled ()
+[PASS] sirs_count in 0..4 without NaN (range 0 to 4)
+[PASS] self-test tp (observed 2, expected 2)
+[PASS] self-test fp (observed 2, expected 2)
+[PASS] self-test tn (observed 3, expected 3)
+[PASS] self-test fn (observed 1, expected 1)
+[PASS] self-test sensitivity (observed 0.6666666666666666, expected 0.6666666666666666)
+[PASS] self-test specificity (observed 0.6, expected 0.6)
+[PASS] self-test precision (observed 0.5, expected 0.5)
+[PASS] self-test f1 (observed 0.5714285714285715, expected 0.5714285714285714)
+[PASS] self-test f2 (observed 0.625, expected 0.625)
+[PASS] self-test accuracy (observed 0.625, expected 0.625)
+[PASS] self-test alert_rate (observed 0.5, expected 0.5)
+[PASS] self-test auroc (observed 0.8, expected 0.8)
+[PASS] self-test auprc (observed 0.7555555555555555, expected 0.7555555555555555)
+[PASS] self-test best f2 threshold (observed 0.3, expected 0.3)
+[PASS] self-test no alerts precision (observed 0.0, expected 0.0)
+[PASS] self-test sweep rows (observed 2, expected 2)
+[PASS] self-test n_early (observed 1, expected 1)
+[PASS] self-test share_alerted_by_first_label (observed 1.0, expected 1.0)
+[PASS] self-test share_alerted_any (observed 1.0, expected 1.0)
+[PASS] self-test median_lead_h (observed 2.0, expected 2.0)
+[PASS] self-test median_timing_all_alerted_h (observed 2.0, expected 2.0)
+[PASS] self-test n_first_row (observed 1, expected 1)
+[PASS] self-test share_alerted_any_first_row (observed 1.0, expected 1.0)
+[PASS] self-test n_nonseptic (observed 1, expected 1)
+[PASS] self-test share_nonseptic_ever_alerted (observed 1.0, expected 1.0)
+[PASS] self-test false_alert_episodes_per_100_patient_days (observed 240.0, expected 240.0)
+read features: 2.8 s
+core matrix (1552210, 50), all matrix val (234037, 239), scaled (1552210, 50)
+NaN share in core matrix: 0.045
+tune sample (300000, 50), positives 5394; fit sample (600000, 50), positives 10739
+[PASS] scaled matrix finite ()
+[PASS] matrices are float32 ()
+[PASS] meta tables keep row order and size (234037, 232215)
+[PASS] meta labels match y ()
+[PASS] meta has no missing patient info ()
+M0 row metrics on val (sirs_count >= 2): tp=2184, fp=67478, tn=162376, fn=1999, sensitivity=0.522, specificity=0.706, precision=0.031, f1=0.059, f2=0.126, accuracy=0.703, alert_rate=0.298
+M0 curves on val: auroc=0.650, auprc=0.031
+M0 alert metrics on val: n_early=375, share_alerted_by_first_label=0.840, share_alerted_any=0.923, median_lead_h=38.000, median_timing_all_alerted_h=33.000, n_first_row=65, share_alerted_any_first_row=0.662, n_nonseptic=5610, share_nonseptic_ever_alerted=0.732, false_alert_episodes_per_100_patient_days=172.325
+reference only, f2-optimal sirs threshold on val: 2
+lr tuning: 19.4 s
+       C  val_auprc  val_auroc  n_iter  converged
+   0.000      0.083      0.784      29       True
+   0.001      0.083      0.786      36       True
+   0.010      0.083      0.786      40       True
+   0.100      0.083      0.786      39       True
+   1.000      0.083      0.786      39       True
+  10.000      0.083      0.786      39       True
+ 100.000      0.083      0.786      39       True
+1000.000      0.083      0.786      39       True
+best C 0.001, val auprc 0.083, lbfgs convergence warnings 0
+largest logistic regression coefficients:
+        feature  coefficient   abs
+  n_labs_so_far       -0.474 0.474
+       cnt_Temp       -0.403 0.403
+ Fibrinogen_tsl        0.398 0.398
+       cnt_FiO2        0.374 0.374
+  TroponinI_tsl        0.324 0.324
+   n_labs_last6        0.266 0.266
+     sirs_count        0.248 0.248
+   cnt_Chloride       -0.243 0.243
+Temp_max_so_far        0.232 0.232
+     Resp_min12        0.194 0.194
+           Temp        0.191 0.191
+        HR_max6        0.190 0.190
+      PaCO2_tsl       -0.186 0.186
+    cnt_Calcium        0.178 0.178
+    cnt_Lactate        0.168 0.168
+dt tuning: 117.3 s
+criterion  max_depth  min_samples_leaf class_weight  val_auprc  val_auroc  n_leaves
+     gini         12               500     balanced      0.090      0.773       235
+  entropy          6              2000          NaN      0.089      0.787        30
+  entropy          6               500     balanced      0.088      0.789        46
+     gini         16              2000          NaN      0.087      0.790        92
+     gini         16               500          NaN      0.086      0.771       254
+     gini          6               500     balanced      0.086      0.789        50
+  entropy         10              2000     balanced      0.086      0.792        80
+  entropy         12              2000     balanced      0.086      0.791        94
+  entropy         12              1000          NaN      0.084      0.788       156
+  entropy         12               500          NaN      0.084      0.766       238
+criterion  best_val_auprc
+     gini           0.090
+  entropy           0.089
+best dt config {'criterion': 'gini', 'max_depth': 12, 'min_samples_leaf': 500, 'class_weight': 'balanced'}, min_samples_leaf scaled to 1810 for all train rows
+dt refit: 29.3 s
+M2 best fit val auroc 0.787, auprc 0.086, leaves 262
+interpretation tree val auroc 0.779, auprc 0.080
+|--- cnt_MAP <= 47.50
+|   |--- FiO2_tsl <= 8.50
+|   |   |--- sirs_count <= 1.50
+|   |   |   |--- Creatinine_max_so_far <= 1.51
+|   |   |   |   |--- class: 0
+|   |   |   |--- Creatinine_max_so_far >  1.51
+|   |   |   |   |--- class: 1
+|   |   |--- sirs_count >  1.50
+|   |   |   |--- shock_index <= 1.19
+|   |   |   |   |--- class: 1
+|   |   |   |--- shock_index >  1.19
+|   |   |   |   |--- class: 1
+|   |--- FiO2_tsl >  8.50
+|   |   |--- Temp <= 37.88
+|   |   |   |--- shock_index <= 0.96
+|   |   |   |   |--- class: 0
+|   |   |   |--- shock_index >  0.96
+|   |   |   |   |--- class: 0
+|   |   |--- Temp >  37.88
+|   |   |   |--- Temp <= 38.32
+|   |   |   |   |--- class: 1
+|   |   |   |--- Temp >  38.32
+|   |   |   |   |--- class: 1
+|--- cnt_MAP >  47.50
+|   |--- cnt_MAP <= 54.50
+|   |   |--- PaCO2_tsl <= 20.50
+|   |   |   |--- Temp <= 37.52
+|   |   |   |   |--- class: 1
+|   |   |   |--- Temp >  37.52
+|   |   |   |   |--- class: 1
+|   |   |--- PaCO2_tsl >  20.50
+|   |   |   |--- sirs_count <= 0.50
+|   |   |   |   |--- class: 0
+|   |   |   |--- sirs_count >  0.50
+|   |   |   |   |--- class: 1
+|   |--- cnt_MAP >  54.50
+|   |   |--- Temp <= 37.60
+|   |   |   |--- cnt_Chloride <= 2.50
+|   |   |   |   |--- class: 1
+|   |   |   |--- cnt_Chloride >  2.50
+rf tuning: 397.6 s
+ max_depth  min_samples_leaf max_features  val_auprc  val_auroc  fit_s
+        12               300        0.300      0.107      0.827 48.535
+        12               300         sqrt      0.105      0.827 21.685
+        20                50         sqrt      0.104      0.826 32.697
+         8                20         sqrt      0.103      0.818 30.306
+        12                50        0.300      0.102      0.822 58.279
+         8                20        0.300      0.102      0.820 36.623
+        16                50         sqrt      0.101      0.825 39.469
+        12                50         sqrt      0.101      0.825 31.753
+        20                20        0.300      0.098      0.818 69.298
+        12                20         sqrt      0.098      0.816 28.902
+best rf config {'max_depth': 12, 'min_samples_leaf': 300, 'max_features': 0.3}
+rf final fit, core: 316.8 s
+rf final fit, all features: 1125.6 s
+M3 core val auroc 0.830, auprc 0.107
+M3b all features val auroc 0.841, auprc 0.115
+permutation importance: 43.0 s
+impurity importance, top 10:
+              feature  importance
+              cnt_MAP       0.109
+        TroponinI_tsl       0.085
+             FiO2_tsl       0.082
+       Fibrinogen_tsl       0.048
+            EtCO2_tsl       0.045
+              cnt_DBP       0.038
+            PaCO2_tsl       0.033
+                 Temp       0.033
+Creatinine_max_so_far       0.032
+          shock_index       0.032
+permutation importance, top 10:
+         feature  mean   std
+        FiO2_tsl 0.007 0.001
+     shock_index 0.004 0.001
+   TroponinI_tsl 0.003 0.002
+       PaCO2_tsl 0.003 0.000
+       EtCO2_tsl 0.002 0.001
+      sirs_count 0.002 0.000
+  SBP_min_so_far 0.001 0.000
+  Fibrinogen_tsl 0.001 0.001
+   HR_max_so_far 0.001 0.000
+O2Sat_min_so_far 0.001 0.000
+alert thresholds (chosen on val): M0_sirs=2.0000, M1_lr=0.7156, M2_dt=0.8017, M3_rf=0.6154, M3b_rf_all=0.6032
+thresholds saved, test scored yet: False
+note: the val threshold is tuned on val, so the val metrics are optimistic
+     model  threshold  sensitivity  specificity  precision    f2  auroc  auprc
+   M0_sirs      2.000        0.522        0.706      0.031 0.126  0.650  0.031
+     M1_lr      0.716        0.431        0.921      0.090 0.245  0.786  0.083
+     M2_dt      0.802        0.369        0.944      0.108 0.248  0.787  0.086
+     M3_rf      0.615        0.475        0.926      0.105 0.278  0.830  0.107
+M3b_rf_all      0.603        0.453        0.934      0.111 0.281  0.841  0.115
+     model  n_early  share_alerted_by_first_label  share_alerted_any  median_lead_h  median_timing_all_alerted_h  n_first_row  share_alerted_any_first_row  n_nonseptic  share_nonseptic_ever_alerted  false_alert_episodes_per_100_patient_days
+   M0_sirs      375                         0.840              0.923         38.000                       33.000           65                        0.662         5610                         0.732                                    172.325
+     M1_lr      375                         0.536              0.669         40.000                       28.000           65                        0.262         5610                         0.157                                     28.303
+     M2_dt      375                         0.525              0.637         39.000                       29.000           65                        0.215         5610                         0.140                                     16.813
+     M3_rf      375                         0.587              0.685         37.000                       31.000           65                        0.354         5610                         0.133                                     20.139
+M3b_rf_all      375                         0.576              0.685         38.000                       30.000           65                        0.385         5610                         0.120                                     16.640
+threshold sweep on val (rq3), first rows per model:
+     model  threshold  sensitivity  specificity  precision    f1    f2  share_alerted_by_first_label  false_alert_episodes_per_100_patient_days
+   M0_sirs      1.000        0.835        0.345      0.023 0.044 0.102                         0.965                                    323.126
+   M0_sirs      2.000        0.522        0.706      0.031 0.059 0.126                         0.840                                    172.325
+   M0_sirs      3.000        0.211        0.922      0.047 0.077 0.124                         0.568                                     52.357
+     M1_lr      0.344        0.849        0.506      0.030 0.059 0.133                         0.987                                    245.780
+     M1_lr      0.363        0.834        0.542      0.032 0.062 0.139                         0.981                                    231.206
+     M1_lr      0.383        0.816        0.577      0.034 0.065 0.145                         0.979                                    216.887
+     M2_dt      0.294        0.867        0.505      0.031 0.060 0.135                         0.995                                    247.835
+     M2_dt      0.303        0.859        0.541      0.033 0.063 0.143                         0.995                                    232.858
+     M2_dt      0.361        0.838        0.576      0.035 0.067 0.149                         0.995                                    219.139
+     M3_rf      0.243        0.906        0.507      0.032 0.063 0.142                         0.997                                    228.285
+     M3_rf      0.266        0.894        0.543      0.034 0.066 0.149                         0.989                                    214.174
+     M3_rf      0.290        0.877        0.578      0.036 0.070 0.156                         0.989                                    200.086
+M3b_rf_all      0.202        0.921        0.508      0.033 0.064 0.144                         0.992                                    227.742
+M3b_rf_all      0.221        0.910        0.543      0.035 0.067 0.152                         0.984                                    211.506
+M3b_rf_all      0.240        0.895        0.578      0.037 0.071 0.159                         0.971                                    192.049
+test scored once
+     model  threshold  sensitivity  specificity  precision    f2  auroc  auprc
+   M0_sirs      2.000        0.499        0.708      0.031 0.123  0.638  0.029
+     M1_lr      0.716        0.409        0.925      0.091 0.241  0.787  0.098
+     M2_dt      0.802        0.347        0.948      0.109 0.241  0.786  0.093
+     M3_rf      0.615        0.447        0.931      0.107 0.273  0.833  0.108
+M3b_rf_all      0.603        0.440        0.940      0.118 0.285  0.844  0.114
+     model  n_early  share_alerted_by_first_label  share_alerted_any  median_lead_h  median_timing_all_alerted_h  n_first_row  share_alerted_any_first_row  n_nonseptic  share_nonseptic_ever_alerted  false_alert_episodes_per_100_patient_days
+   M0_sirs      377                         0.828              0.923         36.500                       28.000           63                        0.698         5611                         0.730                                    172.729
+     M1_lr      377                         0.525              0.645         37.500                       27.000           63                        0.254         5611                         0.151                                     26.514
+     M2_dt      377                         0.493              0.578         35.500                       24.500           63                        0.270         5611                         0.141                                     15.789
+     M3_rf      377                         0.573              0.663         33.000                       26.500           63                        0.317         5611                         0.130                                     18.386
+M3b_rf_all      377                         0.546              0.642         37.000                       31.000           63                        0.381         5611                         0.119                                     14.613
+accuracy of always predicting 0 on test: 0.9819
+model accuracies on test: M0_sirs=0.7039, M1_lr=0.9155, M2_dt=0.9367, M3_rf=0.9222, M3b_rf_all=0.9305
+[PASS] scores finite and of the right length (5 models, val and test)
+[PASS] thresholds fixed before test scoring (json written before test scores)
+[PASS] val alert group sizes (early + first-row 440, first-row 65, never-septic 5610)
+[PASS] test alert group sizes (early + first-row 440, first-row 63, never-septic 5611)
+[PASS] confusion matrix sums equal row counts (val 234037, test 232215)
+[PASS] no model auroc above 0.95 (max 0.844)
+[PASS] rf has 250 trees (250 and 250)
+[PASS] interpretation tree depth at most 4 (depth 4)
+[PASS] rf all-feature model uses 239 features (239)
+[PASS] train and val rows all have a fold in 0..4 (1319995 rows)
+fold 0: 262264 held-out rows, 500000 tree training rows, 84.8 s
+fold 1: 265600 held-out rows, 500000 tree training rows, 81.5 s
+fold 2: 265169 held-out rows, 500000 tree training rows, 43.3 s
+fold 3: 263736 held-out rows, 500000 tree training rows, 45.4 s
+fold 4: 263226 held-out rows, 500000 tree training rows, 46.3 s
+  model  auroc_mean  auroc_std  auprc_mean  auprc_std
+M0_sirs       0.641      0.009       0.030      0.001
+  M1_lr       0.782      0.013       0.084      0.009
+  M2_dt       0.774      0.009       0.082      0.004
+  M3_rf       0.828      0.007       0.102      0.008
+note: the scaling parameters and the core-feature selection came from train rows, which include some held-out patients, so the CV scores may be slightly optimistic
+[PASS] cv has 5 folds for each of 4 models (20 rows)
+results/tables/m1_lr_tuning.csv: 0.000 MB
+results/tables/m1_lr_coefficients.csv: 0.001 MB
+results/tables/m2_dt_tuning.csv: 0.001 MB
+results/tables/m2_dt_gini_vs_entropy.csv: 0.000 MB
+results/tables/m2_dt_rules.txt: 0.001 MB
+results/figures/fig08_dt_interpretation_tree.png: 0.264 MB
+results/tables/m3_rf_tuning.csv: 0.001 MB
+results/tables/m3_rf_importance.csv: 0.002 MB
+results/tables/m3_rf_permutation.csv: 0.003 MB
+results/figures/fig08_rf_importance.png: 0.103 MB
+data/processed/thresholds_m0_m3.json: 0.000 MB
+results/tables/m0_m3_results_val.csv: 0.001 MB
+results/tables/m0_m3_alert_metrics_val.csv: 0.001 MB
+results/tables/m0_m3_threshold_sweep_val.csv: 0.010 MB
+results/tables/m0_m3_results_test.csv: 0.001 MB
+results/tables/m0_m3_alert_metrics_test.csv: 0.001 MB
+data/processed/scores_m0_m3_val.parquet: 4.572 MB
+data/processed/scores_m0_m3_test.parquet: 4.540 MB
+results/figures/fig08_pr_roc_test.png: 0.153 MB
+results/tables/m0_m3_cv_results.csv: 0.001 MB
+results/tables/m0_m3_cv_summary.csv: 0.000 MB
+[PASS] all saved files exist (21 files)
+lbfgs convergence warnings in total: 0
+checks: 69 passed, 0 failed

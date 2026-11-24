@@ -1,0 +1,86 @@
+project root folder: Sepsis_ml
+files per hospital: A 20,336, B 20,000, total 40,336
+load time: 78.4 s
+master shape: 1,552,210 rows x 44 columns
+patient ids unique across A and B: True (40,336 ids for 40,336 files)
+files whose columns differ from the first file: 0
+Dataset.csv shape as read: 1,552,210 rows x 44 columns
+unnamed index columns dropped: ['Unnamed: 0']
+Dataset.csv shape after drop: 1,552,210 rows x 43 columns
+Dataset.csv columns: Hour, HR, O2Sat, Temp, SBP, MAP, DBP, Resp, EtCO2, BaseExcess, HCO3, FiO2, pH, PaCO2, SaO2, AST, BUN, Alkalinephos, Calcium, Chloride, Creatinine, Bilirubin_direct, Glucose, Lactate, Magnesium, Phosphate, Potassium, Bilirubin_total, TroponinI, Hct, Hgb, PTT, WBC, Fibrinogen, Platelets, Age, Gender, Unit1, Unit2, HospAdmTime, ICULOS, SepsisLabel, Patient_ID
+Dataset.csv dtype counts: float64: 38, int64: 5
+Dataset.csv columns that are not float64: ['Hour', 'Gender', 'ICULOS', 'SepsisLabel', 'Patient_ID']
+patient id column in Dataset.csv: Patient_ID
+hour index column in Dataset.csv: Hour
+distinct patient ids in Dataset.csv: 40,336
+row count: official 1,552,210, Dataset.csv 1,552,210, same: True
+official columns missing in Dataset.csv: none
+extra columns in Dataset.csv (besides id and hour): none
+SepsisLabel total: official 27,916, Dataset.csv 27,916, same: True
+file order test: 41 of 41 columns differ ['HR', 'O2Sat', 'Temp', 'SBP', 'MAP', 'DBP', 'Resp', 'EtCO2', 'BaseExcess', 'HCO3', 'FiO2', 'pH', 'PaCO2', 'SaO2', 'AST', 'BUN', 'Alkalinephos', 'Calcium', 'Chloride', 'Creatinine', 'Bilirubin_direct', 'Glucose', 'Lactate', 'Magnesium', 'Phosphate', 'Potassium', 'Bilirubin_total', 'TroponinI', 'Hct', 'Hgb', 'PTT', 'WBC', 'Fibrinogen', 'Platelets', 'Age', 'Gender', 'Unit1', 'Unit2', 'HospAdmTime', 'ICULOS', 'SepsisLabel']
+alignment by patient id + ICULOS (ids matched by sorted rank): 0 of 41 columns differ
+id map rows: 40,336, one-to-one: True
+conclusion: Dataset.csv holds the same data as the official A/B files (patient id + ICULOS); the official files are the master because they carry the hospital label.
+expected columns missing from master: none
+extra columns in master: none
+column order matches the expected groups: True
+feature columns: 40, target: SepsisLabel
+patients: 40,336 (expected about 40,336)
+rows: 1,552,210 (expected about 1.5 million)
+hospital A: 20,336 patients, 790,215 rows
+hospital B: 20,000 patients, 761,995 rows
+septic patients: 2,932 (7.27%, expected about 7%)
+positive rows: 27,916 (1.80%, expected about 2%)
+hospital A: septic patients 1,790 (8.80%), positive rows 17,136 (2.17%)
+hospital B: septic patients 1,142 (5.71%), positive rows 10,780 (1.41%)
+rows per patient overall: min 8, 25% 24, median 38, 75% 47, max 336
+rows per patient hospital A: min 8, 25% 25, median 39, 75% 47, max 336
+rows per patient hospital B: min 8, 25% 23, median 38, 75% 47, max 336
+median stay (hours): septic 37.5, non-septic 39.0
+mean missing % per group: lab 94.8, vital 32.4, static 13.1, target 0.0
+highest missing %: Bilirubin_direct 99.8, Fibrinogen 99.3, TroponinI 99.0, Bilirubin_total 98.5, Alkalinephos 98.4
+lowest missing %: HospAdmTime 0.0, Gender 0.0, Age 0.0, ICULOS 0.0, SepsisLabel 0.0
+columns with more than 90% missing: 26
+master dtype counts: float64: 38, int64: 3
+suspicious range, HR: 4 values outside 20 to 250 (observed 20.00 to 280.00)
+suspicious range, O2Sat: 272 values outside 50 to 100 (observed 20.00 to 100.00)
+suspicious range, Temp: 18 values outside 30 to 43 (observed 20.90 to 50.00)
+suspicious range, SBP: 114 values outside 40 to 300 (observed 20.00 to 300.00)
+suspicious range, MAP: 444 values outside 20 to 200 (observed 20.00 to 300.00)
+suspicious range, DBP: 103 values outside 10 to 200 (observed 20.00 to 300.00)
+suspicious range, Resp: 1,851 values outside 4 to 70 (observed 1.00 to 100.00)
+range looks plausible, Age: observed 14.00 to 100.00
+suspicious range, pH: 1 values outside 6.5 to 7.8 (observed 6.62 to 7.93)
+suspicious range, FiO2: 32 values outside 0 to 1 (observed -50.00 to 4000.00)
+[pass] ICULOS strictly increasing within patient: 0 violations
+[pass] ICULOS has no missing values: 0 violations
+[pass] label never goes from 1 back to 0: 0 violations
+[pass] no duplicated (patient_id, hour) pairs: 0 violations
+[pass] Unit1 and Unit2 never both 1: 0 violations
+[info] Unit1 and Unit2 both missing (rows): 611,960 violations (39.43% of rows)
+Gender value counts: 1: 868,103, 0: 684,107
+[pass] Gender only 0 or 1 (or missing): 0 violations
+[pass] Age within 0 to 100: 0 violations (min 14.0, max 100.0)
+[fail] HospAdmTime not positive: 8,513 violations (min -5366.86, max 23.99)
+septic patients with a positive row: 2,932 (septic patients counted earlier: 2,932)
+first positive hour: min 0, median 28.0, max 330
+septic patients already labelled 1 in their first row: 426 (14.53%)
+non-septic patients with fewer than 24 rows: 8,587 of 37,404 (22.96%)
+septic patients with fewer than 24 rows: 1,088 of 2,932 (37.11%)
+saved results/tables/table1_dataset_summary.csv
+saved results/tables/missingness_by_column.csv
+saved results/tables/column_describe.csv
+saved results/tables/sanity_checks.csv
+parquet re-read shape (1552210, 44), matches written table: True
+parquet re-read dtypes match written table: True
+saved dtypes: float32: 40, str: 2, int16: 1, int8: 1
+sorted by hospital, patient_id, hour: True
+saved files:
+  data/processed/patient_id_map.csv  (0.654 MB)
+  results/tables/table1_dataset_summary.csv  (0.000 MB)
+  results/tables/missingness_by_column.csv  (0.001 MB)
+  results/tables/column_describe.csv  (0.003 MB)
+  results/tables/sanity_checks.csv  (0.000 MB)
+  data/processed/sepsis_master.parquet  (17.182 MB)
+  data/processed/column_groups.json  (0.001 MB)
+  results/step01_summary.txt  (written next)

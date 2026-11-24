@@ -1,0 +1,67 @@
+comparison,question,set_a,set_b,model,metric,mean_diff,std_diff,folds_a_better
+missingness_raw,do the missingness columns help on top of the raw values,raw_values_with_missingness,raw_values,logistic_regression,auroc,0.05659264326815838,0.007143933311254243,5
+missingness_raw,do the missingness columns help on top of the raw values,raw_values_with_missingness,raw_values,logistic_regression,auprc,0.0270067191487539,0.005764475364706419,5
+missingness_raw,do the missingness columns help on top of the raw values,raw_values_with_missingness,raw_values,logistic_regression,sens_at_spec90,0.08085774653671028,0.012422416698211675,5
+missingness_raw,do the missingness columns help on top of the raw values,raw_values_with_missingness,raw_values,random_forest,auroc,0.0074497756243008025,0.004041213955395356,5
+missingness_raw,do the missingness columns help on top of the raw values,raw_values_with_missingness,raw_values,random_forest,auprc,0.0052866390427285,0.0028926309189597865,5
+missingness_raw,do the missingness columns help on top of the raw values,raw_values_with_missingness,raw_values,random_forest,sens_at_spec90,0.013375328347162551,0.005436517595535257,5
+missingness_all,do the missingness columns help on top of the engineered features,all,no_missingness,logistic_regression,auroc,0.036394345777032086,0.003765237263528471,5
+missingness_all,do the missingness columns help on top of the engineered features,all,no_missingness,logistic_regression,auprc,0.018812194589562035,0.006067485982367947,5
+missingness_all,do the missingness columns help on top of the engineered features,all,no_missingness,logistic_regression,sens_at_spec90,0.05726302875636128,0.010344233461472771,5
+missingness_all,do the missingness columns help on top of the engineered features,all,no_missingness,random_forest,auroc,0.012220785094131359,0.0038553832813233418,5
+missingness_all,do the missingness columns help on top of the engineered features,all,no_missingness,random_forest,auprc,0.003776382528151237,0.002229607436865676,5
+missingness_all,do the missingness columns help on top of the engineered features,all,no_missingness,random_forest,sens_at_spec90,0.02070833082387541,0.010800162136150404,5
+rates_vs_counts_isolated,do rates beat cumulative counts when used alone,rates_only,counts_only,logistic_regression,auroc,-0.053591980792027226,0.007790670129643326,0
+rates_vs_counts_isolated,do rates beat cumulative counts when used alone,rates_only,counts_only,logistic_regression,auprc,-0.028921408801051318,0.005664053921155924,0
+rates_vs_counts_isolated,do rates beat cumulative counts when used alone,rates_only,counts_only,logistic_regression,sens_at_spec90,-0.15296667795230207,0.024831440452015963,0
+rates_vs_counts_isolated,do rates beat cumulative counts when used alone,rates_only,counts_only,random_forest,auroc,-0.030769918194310675,0.006942827216496614,0
+rates_vs_counts_isolated,do rates beat cumulative counts when used alone,rates_only,counts_only,random_forest,auprc,-0.020278003149631248,0.007120356262651741,0
+rates_vs_counts_isolated,do rates beat cumulative counts when used alone,rates_only,counts_only,random_forest,sens_at_spec90,-0.07461949427683129,0.022221028932776908,0
+counts_vs_time,do counts beat the stay-time columns alone,counts_only,time_only,logistic_regression,auroc,0.09813988649915388,0.015899073574350886,5
+counts_vs_time,do counts beat the stay-time columns alone,counts_only,time_only,logistic_regression,auprc,0.0032591106767682993,0.004284515058605866,4
+counts_vs_time,do counts beat the stay-time columns alone,counts_only,time_only,logistic_regression,sens_at_spec90,-0.003925982644826476,0.03070693761144568,3
+counts_vs_time,do counts beat the stay-time columns alone,counts_only,time_only,random_forest,auroc,0.05691343693820798,0.00696951772400725,5
+counts_vs_time,do counts beat the stay-time columns alone,counts_only,time_only,random_forest,auprc,0.011752192076708303,0.00474467038859763,5
+counts_vs_time,do counts beat the stay-time columns alone,counts_only,time_only,random_forest,sens_at_spec90,0.03332786573809425,0.00613494587482064,5
+replace_counts_by_rates,what changes when counts are replaced by rates,with_rates,all,logistic_regression,auroc,0.0013171599293595015,0.0016031145826653254,4
+replace_counts_by_rates,what changes when counts are replaced by rates,with_rates,all,logistic_regression,auprc,-0.00015806917767162144,0.0032728056144960276,2
+replace_counts_by_rates,what changes when counts are replaced by rates,with_rates,all,logistic_regression,sens_at_spec90,0.0018085222768262077,0.005593055911430213,3
+replace_counts_by_rates,what changes when counts are replaced by rates,with_rates,all,random_forest,auroc,0.0010437371596595524,0.0016044401437793183,4
+replace_counts_by_rates,what changes when counts are replaced by rates,with_rates,all,random_forest,auprc,-0.0012728202120184605,0.002111534028599936,2
+replace_counts_by_rates,what changes when counts are replaced by rates,with_rates,all,random_forest,sens_at_spec90,0.0022224772184358923,0.004784074411735238,4
+drop_counts,what changes when the counts are dropped,no_counts_no_rates,all,logistic_regression,auroc,-0.005431523280612116,0.001981011462273703,0
+drop_counts,what changes when the counts are dropped,no_counts_no_rates,all,logistic_regression,auprc,-7.201899856595917e-06,0.0026038299677348066,2
+drop_counts,what changes when the counts are dropped,no_counts_no_rates,all,logistic_regression,sens_at_spec90,-0.005274243703867576,0.0023713087725273593,0
+drop_counts,what changes when the counts are dropped,no_counts_no_rates,all,random_forest,auroc,0.000840539002252072,0.0019590688010132987,2
+drop_counts,what changes when the counts are dropped,no_counts_no_rates,all,random_forest,auprc,0.0001755670826940614,0.0027855917511924477,3
+drop_counts,what changes when the counts are dropped,no_counts_no_rates,all,random_forest,sens_at_spec90,-0.0017660072015206363,0.003277107487321237,2
+core_counts,do counts matter inside the core set,core,core_no_counts,logistic_regression,auroc,0.023943297521927455,0.00279539857339139,5
+core_counts,do counts matter inside the core set,core,core_no_counts,logistic_regression,auprc,0.003568590263309801,0.00228040269916417,5
+core_counts,do counts matter inside the core set,core,core_no_counts,logistic_regression,sens_at_spec90,0.024993556050946265,0.010552541692742008,5
+core_counts,do counts matter inside the core set,core,core_no_counts,random_forest,auroc,0.0032942484915453817,0.00217113693875285,5
+core_counts,do counts matter inside the core set,core,core_no_counts,random_forest,auprc,0.0023956986424517185,0.0021752916784330456,4
+core_counts,do counts matter inside the core set,core,core_no_counts,random_forest,sens_at_spec90,0.00645452262118279,0.004489172658684831,5
+icu_time_shortcut,how much do ICULOS and HospAdmTime add,all,no_icu_time,logistic_regression,auroc,0.0008622917982390899,0.001351688321904806,4
+icu_time_shortcut,how much do ICULOS and HospAdmTime add,all,no_icu_time,logistic_regression,auprc,0.00019567033713920046,0.00030229760974798375,5
+icu_time_shortcut,how much do ICULOS and HospAdmTime add,all,no_icu_time,logistic_regression,sens_at_spec90,0.00042168549367694875,0.0020046419709908417,3
+icu_time_shortcut,how much do ICULOS and HospAdmTime add,all,no_icu_time,random_forest,auroc,0.001140387431219092,0.0018142895571994404,4
+icu_time_shortcut,how much do ICULOS and HospAdmTime add,all,no_icu_time,random_forest,auprc,-0.0006481543280899005,0.000816146610647506,1
+icu_time_shortcut,how much do ICULOS and HospAdmTime add,all,no_icu_time,random_forest,sens_at_spec90,0.004586502188464825,0.006159128351815721,4
+labs_vs_vitals,what do the labs add over the vitals,all,vitals_only,logistic_regression,auroc,0.045558319516933496,0.007535996831288071,5
+labs_vs_vitals,what do the labs add over the vitals,all,vitals_only,logistic_regression,auprc,0.01886045419559562,0.0047696820338439996,5
+labs_vs_vitals,what do the labs add over the vitals,all,vitals_only,logistic_regression,sens_at_spec90,0.05227526179417471,0.012362446610477987,5
+labs_vs_vitals,what do the labs add over the vitals,all,vitals_only,random_forest,auroc,0.02914934741412516,0.0033459342515162784,5
+labs_vs_vitals,what do the labs add over the vitals,all,vitals_only,random_forest,auprc,0.004810368135302839,0.004005978511383546,4
+labs_vs_vitals,what do the labs add over the vitals,all,vitals_only,random_forest,sens_at_spec90,0.029054642517263675,0.003922063051412342,5
+engineered_vs_raw,do engineered features help over the raw values,all,raw_values,logistic_regression,auroc,0.07889884911439027,0.004593971877413538,5
+engineered_vs_raw,do engineered features help over the raw values,all,raw_values,logistic_regression,auprc,0.034471281192959835,0.008967756706096034,5
+engineered_vs_raw,do engineered features help over the raw values,all,raw_values,logistic_regression,sens_at_spec90,0.10817572671569961,0.013244231374256435,5
+engineered_vs_raw,do engineered features help over the raw values,all,raw_values,random_forest,auroc,0.00867209599023142,0.0025413141862943695,5
+engineered_vs_raw,do engineered features help over the raw values,all,raw_values,random_forest,auprc,0.0076108328076537005,0.00508003106672489,5
+engineered_vs_raw,do engineered features help over the raw values,all,raw_values,random_forest,sens_at_spec90,0.024757133297720592,0.00600427343119537,5
+core_vs_all,does the small core set match the full set,core,all,logistic_regression,auroc,-0.028209619138149677,0.005017986626135814,0
+core_vs_all,does the small core set match the full set,core,all,logistic_regression,auprc,-0.012168366689562135,0.005154096725086113,0
+core_vs_all,does the small core set match the full set,core,all,logistic_regression,sens_at_spec90,-0.031380820456701375,0.005175210974529243,0
+core_vs_all,does the small core set match the full set,core,all,random_forest,auroc,-0.00735586405796147,0.0028913239081281273,0
+core_vs_all,does the small core set match the full set,core,all,random_forest,auprc,-0.004300928365688758,0.0030435826606413823,0
+core_vs_all,does the small core set match the full set,core,all,random_forest,sens_at_spec90,-0.009360276751037089,0.007845259579261942,0

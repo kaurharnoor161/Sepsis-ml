@@ -1,0 +1,22 @@
+set,n_features,how it is defined
+all,239,every causal feature
+no_missingness,134,"all features without masks, time since last measurement and counts"
+no_icu_time,237,all without ICULOS and HospAdmTime
+vitals_only,123,"features of the vitals only, from the v2 file"
+raw_values,41,current values of the variables plus the static columns
+raw_values_with_missingness,109,raw_values plus the masks and the time since last measurement
+cnt_cols,35,the 34 cumulative count columns plus n_labs_so_far
+rate_cols,35,"the 34 measurement rates plus rate_labs, read from rate_features"
+all_plus_rates,274,from feature_sets_v2
+with_counts,239,from feature_sets_v2
+with_rates,239,"all without the count columns, plus the rate columns"
+no_counts_no_rates,204,all without the count columns
+core,50,small core set from the v2 file
+core_no_icu_time,50,from feature_sets_v2
+masks_only,34,the 34 measurement masks
+pca_cols,29,from feature_sets_v2
+counts_only,35,cnt_cols
+rates_only,35,rate_cols
+time_only,2,ICULOS and HospAdmTime
+core_no_counts,36,core without the members of cnt_cols
+all_no_hospital_habits,234,"all without unit_1, unit_2, unit_unknown, ICULOS and HospAdmTime"

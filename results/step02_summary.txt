@@ -1,0 +1,156 @@
+project root: Sepsis_ml
+[PASS] shape is 1,552,210 x 44 (observed (1552210, 44))
+[PASS] column order matches column_groups.json
+memory 296 MB
+[PASS] pid runs 0..n-1 in table order
+patient table shape: (40336, 6)
+known facts versus observed
+[PASS] rows (observed 1,552,210, expected 1,552,210)
+[PASS] patients (observed 40,336, expected 40,336)
+[PASS] patients, hospital A (observed 20,336, expected 20,336)
+[PASS] patients, hospital B (observed 20,000, expected 20,000)
+[PASS] septic patients (observed 2,932, expected 2,932)
+[PASS] septic rate overall (%) (observed 7.27, expected 7.27)
+[PASS] septic rate A (%) (observed 8.80, expected 8.80)
+[PASS] septic rate B (%) (observed 5.71, expected 5.71)
+[PASS] positive rows (observed 27,916, expected 27,916)
+[PASS] positive rows (%) (observed 1.80, expected 1.80)
+[PASS] min rows per patient (observed 8, expected 8)
+[PASS] median rows per patient (observed 38.00, expected 38)
+[PASS] max rows per patient (observed 336, expected 336)
+[PASS] septic patients labelled 1 in first row (observed 426, expected 426)
+a. ICULOS and hour
+[PASS] hour is the 0-based row position within each patient
+[FAIL] ICULOS == hour + 1 for every row (329,595 violating rows)
+[PASS] ICULOS strictly increasing within patients (0 non-increasing steps)
+[PASS] no gaps in ICULOS within patients (0 gap steps in 0 patients)
+b. static columns constant within patient (NaN counted as a value)
+[PASS] Age constant within patient (0 patients not constant)
+[PASS] Gender constant within patient (0 patients not constant)
+[PASS] Unit1 constant within patient (0 patients not constant)
+[PASS] Unit2 constant within patient (0 patients not constant)
+[PASS] HospAdmTime constant within patient (0 patients not constant)
+c. Unit1/Unit2 missingness
+[PASS] Unit1 and Unit2 are always missing together (0 rows with only one missing)
+[PASS] rows with Unit missing (%) (observed 39.43, expected 39.40)
+          rows_missing_pct  patients_any_missing_pct  patients_whole_stay_pct  patients_part_of_stay_pct
+hospital                                                                                                
+A                   48.870                    46.820                   46.820                      0.000
+B                   29.630                    30.480                   30.480                      0.000
+All                 39.430                    38.720                   38.720                      0.000
+missing % per vital
+HR       9.900
+O2Sat   13.100
+Temp    66.200
+SBP     14.600
+MAP     12.500
+DBP     31.300
+Resp    15.400
+EtCO2   96.300
+[PASS] labs mean missing (%) (observed 94.82, expected 95)
+[PASS] EtCO2 missing (%) (observed 96.29, expected 96)
+[PASS] Temp missing (%) (observed 66.16, expected 66)
+[PASS] DBP missing (%) (observed 31.35, expected 31)
+[PASS] other vitals missing between 10 and 15% (HR 9.9, O2Sat 13.1, SBP 14.6, MAP 12.5, Resp 15.4)
+three largest differences in measured fraction between hospitals (percentage points)
+       measured_pct_A  measured_pct_B  abs_diff_pct_points
+DBP            51.870          86.060               34.180
+Unit2          51.130          70.370               19.240
+Unit1          51.130          70.370               19.240
+All: septic patients 2,932 of 40,336 (7.27%), label-1 rows 27,916 of 1,552,210 (1.80%)
+A: septic patients 1,790 of 20,336 (8.80%), label-1 rows 17,136 of 790,215 (2.17%)
+B: septic patients 1,142 of 20,000 (5.71%), label-1 rows 10,780 of 761,995 (1.41%)
+stay length (rows per patient) by outcome
+            patients  median   mean  pct_under_24_rows
+group                                                 
+non-septic     37404  39.000 36.890             22.960
+septic          2932  37.500 58.800             37.110
+stay length by hospital
+          patients  median   mean  pct_under_24_rows
+hospital                                            
+A            20336  39.000 38.860             22.120
+B            20000  38.000 38.100             25.880
+all patients: median 38.0, mean 38.48, under 24 rows 23.99%
+first_positive_hour (septic patients)
+count   2932.000
+mean      49.280
+std       59.100
+min        0.000
+25%        5.750
+50%       28.000
+75%       71.000
+max      330.000
+labelled 1 in first row: 426 (14.53% of septic patients)
+positive rows per septic patient
+min 1, median 10.0, max 10, mean 9.52
+share of rows of septic patients that are positive: 16.19%
+[PASS] label never returns to 0 once it is 1 (0 drops)
+[PASS] positive rows == n_rows - first_positive_hour for every septic patient
+non-septic patients with no qualifying onset hour (last hour used): 0
+median t0, septic 28.0, non-septic 7.0
+rows in the window r = -24..6: 662,605 (septic 67,402)
+septic minus non-septic difference in mean (observed values only)
+HR       r=-12: diff +4.182  (septic n=1,782, non-septic n=12,015)
+HR       r= -6: diff +5.360  (septic n=2,025, non-septic n=17,796)
+HR       r= -1: diff +5.969  (septic n=2,297, non-septic n=23,752)
+Resp     r=-12: diff +1.826  (septic n=1,662, non-septic n=11,276)
+Resp     r= -6: diff +2.096  (septic n=1,904, non-septic n=16,743)
+Resp     r= -1: diff +2.087  (septic n=2,146, non-septic n=22,272)
+Temp     r=-12: diff +0.241  (septic n=584, non-septic n=4,788)
+Temp     r= -6: diff +0.197  (septic n=796, non-septic n=6,978)
+Temp     r= -1: diff +0.220  (septic n=854, non-septic n=9,188)
+MAP      r=-12: diff -1.191  (septic n=1,751, non-septic n=11,718)
+MAP      r= -6: diff -1.231  (septic n=1,993, non-septic n=17,331)
+MAP      r= -1: diff -1.314  (septic n=2,259, non-septic n=23,128)
+Lactate  r=-12: diff +0.164  (septic n=91, non-septic n=440)
+Lactate  r= -6: diff -0.146  (septic n=116, non-septic n=591)
+Lactate  r= -1: diff -0.181  (septic n=127, non-septic n=768)
+measurement rate at r = -6, septic versus non-septic
+Temp                 septic 0.362, non-septic 0.348, ratio 1.04
+Resp                 septic 0.866, non-septic 0.835, ratio 1.04
+HR                   septic 0.921, non-septic 0.887, ratio 1.04
+Lactate              septic 0.053, non-septic 0.029, ratio 1.79
+WBC                  septic 0.077, non-septic 0.071, ratio 1.08
+Creatinine           septic 0.064, non-septic 0.067, ratio 0.96
+mean_labs_per_hour   septic 1.742, non-septic 1.496, ratio 1.16
+HospAdmTime quartile edges (first row): -5366.86, -43.68, -6.05, -0.04, 23.99
+groups with septic rate more than 3 percentage points from the overall rate (7.27%)
+   variable   scope   group  n_patients  n_septic  septic_rate_pct  diff_pct_points
+       Unit       A   Unit1        5344       576           10.780            3.510
+       Unit       A   Unit2        5470       222            4.060           -3.210
+       Unit       A unknown        9522       992           10.420            3.150
+HospAdmTime overall      Q4        9347      1018           10.890            3.620
+HospAdmTime overall unknown           1         0            0.000           -7.270
+HospAdmTime       A      Q1        4594       506           11.010            3.750
+HospAdmTime       A unknown           1         0            0.000           -7.270
+HospAdmTime       B      Q2        6210       215            3.460           -3.810
+HospAdmTime       B      Q4        1771       244           13.780            6.510
+smallest number of complete pairs in the matrix: 9
+8 most correlated pairs (absolute Spearman rho)
+      var1  var2    rho  n_pairs
+       Hgb   Hct  0.955    14451
+       MAP   DBP  0.865   136046
+       SBP   MAP  0.782   168916
+Creatinine   BUN  0.728    12103
+       SBP   DBP  0.528   137257
+     PaCO2  HCO3  0.494     2238
+     EtCO2 PaCO2  0.484      676
+        pH PaCO2 -0.446    10980
+
+saved files
+  data/processed/patient_table.csv  0.90 MB
+  results/figures/fig02_missing_by_column.png  0.10 MB
+  results/figures/fig02_measured_by_hour.png  0.15 MB
+  results/figures/fig02_measured_by_hospital.png  0.11 MB
+  results/tables/measured_fraction_by_hospital.csv  0.00 MB
+  results/figures/fig02_class_balance.png  0.07 MB
+  results/figures/fig02_stay_length.png  0.08 MB
+  results/figures/fig02_onset_hour.png  0.04 MB
+  results/figures/fig02_pre_onset_trajectories.png  0.44 MB
+  results/tables/pre_onset_trajectory_stats.csv  0.02 MB
+  results/figures/fig02_measurement_frequency_pre_onset.png  0.41 MB
+  results/tables/septic_rate_by_static.csv  0.00 MB
+  results/figures/fig02_static_vs_sepsis.png  0.12 MB
+  results/figures/fig02_correlation.png  0.25 MB
+  results/tables/correlation_spearman.csv  0.00 MB
+  results/step02_summary.txt  (this file)

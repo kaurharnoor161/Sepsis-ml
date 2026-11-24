@@ -1,0 +1,112 @@
+project root: Sepsis_ml
+[PASS] 34 value columns | 34 columns
+[PASS] output layout has 114 columns | 114 columns
+master shape (with split column): (1552210, 45)
+master memory: 292 MB
+[PASS] master has 1,552,210 rows x 44 columns | 1552210 x 44
+[PASS] every row has a split | 0 rows without split
+[PASS] splits table has 40,336 patients | 40336 patients
+[PASS] master patients match splits table
+[PASS] train patients | 28235 vs 28235
+[PASS] train rows | 1085958 vs 1085958
+[PASS] val patients | 6050 vs 6050
+[PASS] val rows | 234037 vs 234037
+[PASS] test patients | 6051 vs 6051
+[PASS] test rows | 232215 vs 232215
+[PASS] positive rows total 27,916 | 27916
+[PASS] septic patients 2,932 | 2932
+[PASS] rows sorted by hospital, patient_id, hour
+[PASS] hour is the row position within each patient
+[PASS] rows per patient match n_rows in splits
+missing share: labs mean 0.948, Glucose 0.829, EtCO2 0.963, Temp 0.662, DBP 0.313
+other vitals: HR 0.099, O2Sat 0.131, SBP 0.146, MAP 0.125, Resp 0.154
+[PASS] lab missing share about 95%, Glucose below 90%
+[PASS] EtCO2 96%, Temp 66%, DBP 31% missing
+[PASS] other vitals 10 to 15% missing
+[PASS] Unit1 and Unit2 missing together in 39.4% of rows | 0.3943
+[PASS] HospAdmTime missing in 8 rows | 8 rows
+                  min  median      max
+HR             20.000  83.500  280.000
+O2Sat          20.000  98.000  100.000
+Temp           20.900  37.000   50.000
+Resp            1.000  18.000  100.000
+SBP            20.000 121.000  300.000
+MAP            20.000  80.000  300.000
+DBP            20.000  62.000  300.000
+FiO2          -50.000   0.500 4000.000
+AST             3.000  41.000 9961.000
+WBC             0.100  10.300  440.000
+HospAdmTime -5366.860  -6.030   23.990
+FiO2 values outside (0, 1]: 113
+fit uses 28235 train patients and 1085958 train rows
+[PASS] fit uses 28,235 train patients | 28235
+columns with abs(skew) > 3: 11 of 37
+AST (6.2), Alkalinephos (5.4), Creatinine (4.1), Bilirubin_direct (3.8), Lactate (3.3), Bilirubin_total (5.2), TroponinI (5.2), PTT (3.5), WBC (3.1), HospAdmTime (-6.5), ICULOS (4.1)
+set to NaN by hard limits, train: 88, all rows: 119
+  FiO2: train 83, all rows 113
+  Temp: train 5, all rows 6
+40336 patients in 9 chunks
+[PASS] unscaled shape 1,552,210 x 114 | (1552210, 114)
+[PASS] unscaled column order as specified
+[PASS] unscaled row order equals master
+pre_unscaled.parquet: 38.4 MB, in memory 438 MB
+log-transformed before standardising (11): AST, Alkalinephos, Creatinine, Bilirubin_direct, Lactate, Bilirubin_total, TroponinI, PTT, WBC, HospAdmTime, ICULOS
+pre_scaled.parquet: 37.5 MB
+parameter table: 37 rows, 14 columns
+column  clip_lo  clip_hi  median   skew  log1p_flag
+    HR   40.000  150.000  83.000  0.414       False
+ O2Sat   74.000  100.000  98.000 -1.892       False
+  Temp   33.000   39.670  37.000 -0.227       False
+   SBP   64.000  213.000 121.000  0.546       False
+   MAP   40.500  158.000  80.000  0.718       False
+   DBP   29.000  130.076  62.000  0.741       False
+  Resp    3.000   43.000  18.000  0.763       False
+ EtCO2   10.000   95.960  33.000  0.572       False
+[PASS] fit used 28,235 train patients | 28235
+[PASS] scaler fitted on train rows only | splits ['train'], rows 1085958
+[PASS] no cross-patient fill at hour 0 | 0 violations in 40336 first rows
+[PASS] no back-fill before first observation | 0 violations, worst column HR (0)
+[PASS] stored value equals clipped raw value where measured | 0 mismatches in 200000 sampled rows x 34 columns
+[PASS] causality: cut tables equal the full table | 0 mismatching cells in 7014 rows x 114 columns, 300 patients; first offenders: []
+[PASS] tsl is 0 where mask is 1 | 0 violations
+[PASS] tsl between 0 and 72 | 0 violations
+[PASS] tsl equals min(hour + 1, 72) before first observation | 0 violations
+[PASS] no NaN in the scaled table | 0 NaN cells
+[PASS] train rows: mean about 0 and std about 1 | largest abs mean 0.00000, largest std deviation from 1 0.00000
+val rows: largest abs mean 0.032, largest std deviation from 1 0.205
+test rows: largest abs mean 0.040, largest std deviation from 1 0.232
+[PASS] both files share patient_id, hospital, hour, split, SepsisLabel
+[PASS] SepsisLabel sum is 27,916 | 27916
+[PASS] same column names and order in both files
+[PASS] 114 columns in both files | 114 and 114
+[PASS] hospital is not a feature column | 109 feature columns
+          column  never_observed_share
+Bilirubin_direct                 0.954
+           EtCO2                 0.917
+      Fibrinogen                 0.895
+       TroponinI                 0.848
+         Lactate                 0.704
+            SaO2                 0.698
+ Bilirubin_total                 0.698
+    Alkalinephos                 0.697
+             AST                 0.693
+      BaseExcess                 0.682
+never observed share, train rows: HR 0.023, Resp 0.030, Temp 0.075, MAP 0.028, Lactate 0.704, WBC 0.224, Creatinine 0.213, Glucose 0.146
+values removed by hard limits: train 88, all rows 119
+values changed by clipping: train 14829, all rows 21456
+five columns with the most clipped train values:
+     column  train_low  train_high  train_total  all_rows
+HospAdmTime       1061        1083         2144      2983
+        MAP        945         929         1874      2694
+        SBP        884         911         1795      2579
+         HR        882         899         1781      2544
+       Resp        857         912         1769      2571
+checks: 42 passed, 0 failed
+saved files:
+  data/processed/pre_unscaled.parquet  38.42 MB
+  data/processed/pre_scaled.parquet  37.48 MB
+  data/processed/preprocess_params.joblib  0.00 MB
+  results/tables/preprocess_params.csv  0.00 MB
+  results/tables/never_observed_share_train.csv  0.00 MB
+  results/figures/fig04_clip_bounds.png  0.20 MB
+  results/figures/fig04_never_observed_by_hour.png  0.17 MB

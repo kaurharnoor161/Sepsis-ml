@@ -1,0 +1,115 @@
+root: /Users/harnoorkaur/Downloads/Sepsis_ml
+[PASS] val scores_m0_m3 aligned with scores_m0_m3 (234037 rows)
+[PASS] val scores_m4_m6 aligned with scores_m0_m3 (234037 rows)
+[PASS] val scores_m7 aligned with scores_m0_m3 (234037 rows)
+[PASS] test scores_m0_m3 aligned with scores_m0_m3 (232215 rows)
+[PASS] test scores_m4_m6 aligned with scores_m0_m3 (232215 rows)
+[PASS] test scores_m7 aligned with scores_m0_m3 (232215 rows)
+[PASS] val every row found in patient_splits (0 rows without a match)
+[PASS] test every row found in patient_splits (0 rows without a match)
+[PASS] val rows (observed 234037, expected 234037)
+[PASS] val positive rows (observed 4183, expected 4183)
+[PASS] val patients (observed 6050, expected 6050)
+[PASS] val septic patients (observed 440, expected 440)
+[PASS] val first-row septic patients (observed 65, expected 65)
+[PASS] val never-septic patients (observed 5610, expected 5610)
+val early-group septic patients: 375
+[PASS] test rows (observed 232215, expected 232215)
+[PASS] test positive rows (observed 4203, expected 4203)
+[PASS] test patients (observed 6051, expected 6051)
+[PASS] test septic patients (observed 440, expected 440)
+[PASS] test first-row septic patients (observed 63, expected 63)
+[PASS] test never-septic patients (observed 5611, expected 5611)
+test early-group septic patients: 377
+[PASS] test early-group septic patients (observed 377, expected 377)
+[PASS] val patients with a label 1 equal ever_septic ()
+[PASS] test patients with a label 1 equal ever_septic ()
+test row positive rate: 0.0181
+section 1: 0.5 s
+saved final_extended_table.csv (12 rows)
+saved final_main_table.csv (9 rows)
+accuracy of always predicting 0 on test: 0.9819
+model accuracies on test: M0_sirs 0.7039, M1_lr 0.9155, M2_dt 0.9367, M3_rf 0.9222, M3b_rf_all 0.9305, M4_gnb_core 0.9373, M4b_bnb_masks 0.7929, M4c_gnb_pca 0.9133, M5_knn 0.9277, M6_linsvm 0.9146, M6_rbfsvm 0.8982, M7_mlp 0.9262
+[PASS] m0_m3_results_test.csv M0_sirs auroc (observed 0.6377746192, expected 0.6377746192)
+[PASS] m0_m3_results_test.csv M0_sirs auprc (observed 0.02930421364, expected 0.02930421364)
+[PASS] m0_m3_results_test.csv M1_lr auroc (observed 0.7865257969, expected 0.7865257969)
+[PASS] m0_m3_results_test.csv M1_lr auprc (observed 0.09795022219, expected 0.09795022219)
+[PASS] m0_m3_results_test.csv M2_dt auroc (observed 0.7859454792, expected 0.7859454792)
+[PASS] m0_m3_results_test.csv M2_dt auprc (observed 0.0928907899, expected 0.0928907899)
+[PASS] m0_m3_results_test.csv M3_rf auroc (observed 0.8331713153, expected 0.8331713153)
+[PASS] m0_m3_results_test.csv M3_rf auprc (observed 0.108333906, expected 0.108333906)
+[PASS] m0_m3_results_test.csv M3b_rf_all auroc (observed 0.8436648336, expected 0.8436648336)
+[PASS] m0_m3_results_test.csv M3b_rf_all auprc (observed 0.1138819514, expected 0.1138819514)
+[PASS] m4_m6_results_test.csv M4_gnb_core auroc (observed 0.7572292706, expected 0.7572292706)
+[PASS] m4_m6_results_test.csv M4_gnb_core auprc (observed 0.08180912704, expected 0.08180912704)
+[PASS] m4_m6_results_test.csv M4b_bnb_masks auroc (observed 0.5940448215, expected 0.5940448215)
+[PASS] m4_m6_results_test.csv M4b_bnb_masks auprc (observed 0.02687623782, expected 0.02687623782)
+[PASS] m4_m6_results_test.csv M4c_gnb_pca auroc (observed 0.7880638357, expected 0.7880638357)
+[PASS] m4_m6_results_test.csv M4c_gnb_pca auprc (observed 0.0768223867, expected 0.0768223867)
+[PASS] m4_m6_results_test.csv M5_knn auroc (observed 0.7929439233, expected 0.7929439233)
+[PASS] m4_m6_results_test.csv M5_knn auprc (observed 0.08329970138, expected 0.08329970138)
+[PASS] m4_m6_results_test.csv M6_linsvm auroc (observed 0.7763169203, expected 0.7763169203)
+[PASS] m4_m6_results_test.csv M6_linsvm auprc (observed 0.07678140232, expected 0.07678140232)
+[PASS] m4_m6_results_test.csv M6_rbfsvm auroc (observed 0.8128421084, expected 0.8128421084)
+[PASS] m4_m6_results_test.csv M6_rbfsvm auprc (observed 0.08127192603, expected 0.08127192603)
+[PASS] ann_results_test.csv M7_mlp auroc (observed 0.8190852692, expected 0.8190852692)
+[PASS] ann_results_test.csv M7_mlp auprc (observed 0.1100961738, expected 0.1100961738)
+section 2: 1.5 s
+test patients: 6051, bootstrap replicates: 200
+saved final_bootstrap_metrics.csv (9 rows)
+saved final_main_table.csv (9 rows)
+saved final_bootstrap_paired_differences.csv (18 rows)
+[PASS] bootstrap replicates (observed 200, expected 200)
+[PASS] all replicate metrics are finite ()
+[PASS] every auroc point estimate lies inside its interval (outside: none)
+[PASS] every auprc point estimate lies inside its interval (outside: none)
+section 3: 150.2 s
+saved final_timely_alert_test.csv (12 rows)
+[PASS] four category shares add up to 1 for every model (max deviation 0.00e+00)
+[PASS] early-group size on test (observed 377, expected 377)
+M0_sirs: too_early 0.599, timely 0.286, too_early is larger than timely
+M1_lr: too_early 0.414, timely 0.194, too_early is larger than timely
+M2_dt: too_early 0.369, timely 0.164, too_early is larger than timely
+M3_rf: too_early 0.430, timely 0.204, too_early is larger than timely
+M3b_rf_all: too_early 0.419, timely 0.199, too_early is larger than timely
+M4_gnb_core: too_early 0.308, timely 0.122, too_early is larger than timely
+M4b_bnb_masks: too_early 0.711, timely 0.263, too_early is larger than timely
+M4c_gnb_pca: too_early 0.374, timely 0.199, too_early is larger than timely
+M5_knn: too_early 0.448, timely 0.183, too_early is larger than timely
+M6_linsvm: too_early 0.385, timely 0.151, too_early is larger than timely
+M6_rbfsvm: too_early 0.483, timely 0.204, too_early is larger than timely
+M7_mlp: too_early 0.416, timely 0.204, too_early is larger than timely
+section 4: 1.1 s
+saved final_operating_points_test.csv (27 rows)
+[PASS] validation false alert rate is at or below its target (27 of 27 operating points found)
+saved final_alert_tradeoff_test.csv (123 rows)
+saved rq3_threshold_sweep_test.csv (60 rows)
+section 5: 21.4 s
+M1_lr: test AUROC raw 0.7865, isotonic 0.7859
+M3_rf: test AUROC raw 0.8332, isotonic 0.8325
+M3b_rf_all: test AUROC raw 0.8437, isotonic 0.8435
+M7_mlp: test AUROC raw 0.8191, isotonic 0.8185
+saved final_calibration_summary.csv (8 rows)
+[PASS] isotonic changes test AUROC by at most 0.02 (largest change 0.0006)
+section 6: 1.9 s
+[PASS] M3b_rf_all confusion matrix total (observed 232215, expected 232215)
+[PASS] M7_mlp confusion matrix total (observed 232215, expected 232215)
+section 7: 2.3 s
+results index: 153 files listed in results_index.csv
+saved results/tables/final_extended_table.csv  2.8 KB
+saved results/tables/final_main_table.csv  2.8 KB
+saved results/tables/final_bootstrap_metrics.csv  1.2 KB
+saved results/tables/final_bootstrap_paired_differences.csv  1.6 KB
+saved results/figures/fig13_main_table_cis.png  59.9 KB
+saved results/figures/fig13_paired_differences.png  58.3 KB
+saved results/tables/final_timely_alert_test.csv  1.9 KB
+saved results/tables/final_operating_points_test.csv  7.6 KB
+saved results/tables/final_alert_tradeoff_test.csv  17.2 KB
+saved results/tables/rq3_threshold_sweep_test.csv  10.9 KB
+saved results/figures/fig13_alert_tradeoff.png  164.2 KB
+saved results/tables/final_calibration_summary.csv  1.1 KB
+saved results/figures/fig13_calibration.png  150.9 KB
+saved results/figures/fig13_pr_roc_all_test.png  198.1 KB
+saved results/figures/fig13_confusion_best.png  71.2 KB
+saved results/results_index.csv  10.7 KB
+checks: 57 passed, 0 failed

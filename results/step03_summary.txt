@@ -1,0 +1,141 @@
+project root: Sepsis_ml
+patient table shape: (40336, 6)
+known facts versus observed
+[PASS] patient_id unique (0 duplicates)
+[PASS] ordered hospital A then B, ids sorted within hospital
+[PASS] patients (observed 40,336, expected 40,336)
+[PASS] patients, hospital A (observed 20,336, expected 20,336)
+[PASS] patients, hospital B (observed 20,000, expected 20,000)
+[PASS] septic patients (observed 2,932, expected 2,932)
+[PASS] septic rate (%) (observed 7.27, expected 7.27)
+[PASS] septic patients, A (observed 1,790, expected 1,790)
+[PASS] septic patients, B (observed 1,142, expected 1,142)
+[PASS] septic rate A (%) (observed 8.80, expected 8.80)
+[PASS] septic rate B (%) (observed 5.71, expected 5.71)
+[PASS] rows (observed 1,552,210, expected 1,552,210)
+[PASS] positive rows (observed 27,916, expected 27,916)
+[PASS] positive rows (%) (observed 1.80, expected 1.80)
+[PASS] positive rows A (%) (observed 2.17, expected 2.17)
+[PASS] positive rows B (%) (observed 1.41, expected 1.41)
+[PASS] median stay (rows) (observed 38.00, expected 38)
+[PASS] stays under 24 rows (%) (observed 23.99, expected 23.99)
+[PASS] septic patients labelled 1 in first row (observed 426, expected 426)
+[PASS] no septic patient has more than 10 positive rows (max 10)
+stratum sizes
+strata
+A_non       18546
+A_septic     1790
+B_non       18858
+B_septic     1142
+parquet rows: 1,552,210, memory 48 MB
+[PASS] parquet rows (observed 1,552,210, expected 1,552,210)
+[PASS] parquet positive rows (observed 27,916, expected 27,916)
+[PASS] rows per patient in parquet match the patient table (0 patients differ)
+[PASS] one hour-0 row per patient (40,336 rows)
+[PASS] first ICULOS found for every patient
+patients with first ICULOS > 1: 8,793 (21.80%)
+by hospital
+          patients  first_iculos_gt1    pct
+hospital                                   
+A            20336              7497 36.870
+B            20000              1296  6.480
+by septic status
+             patients  first_iculos_gt1    pct
+ever_septic                                   
+False           37404              8136 21.750
+True             2932               657 22.410
+first ICULOS of those patients
+min     2.000
+25%     2.000
+50%     3.000
+75%     4.000
+max   304.000
+[PASS] ICULOS == hour + first ICULOS for every row (0 violating rows)
+[PASS] rows with ICULOS != hour + 1 (observed 329,595, expected 329,595)
+patients per split: train 28,235, val 6,050, test 6,051
+validation patients per fold: 0 6,857, 1 6,857, 2 6,857, 3 6,857, 4 6,857
+test patients with cv_fold = -1: 6,051
+A -> B
+           patients  septic_pct
+xh_A_to_B                      
+train         17285       8.800
+val            3051       8.820
+test          20000       5.710
+B -> A
+           patients  septic_pct
+xh_B_to_A                      
+train         17000       5.710
+val            3000       5.700
+test          20336       8.800
+data/processed/splits/train_ids.txt: 28,235 ids
+data/processed/splits/val_ids.txt: 6,050 ids
+data/processed/splits/test_ids.txt: 6,051 ids
+[PASS] patient_id unique in the patient table
+[PASS] saved split file has one row per patient (40,336 rows)
+[PASS] train and val are disjoint (0 shared)
+[PASS] train and test are disjoint (0 shared)
+[PASS] val and test are disjoint (0 shared)
+[PASS] union of the three splits equals all patients (40,336 of 40,336)
+[PASS] id lists match the split column
+[PASS] every train+val patient is in the validation part of exactly one fold (0 patients not exactly once)
+[PASS] fold validation sets contain only train+val patients
+[PASS] test patients are in no fold
+[PASS] fold 0: training and validation parts share no patient (train 27,428, val 6,857)
+[PASS] fold 1: training and validation parts share no patient (train 27,428, val 6,857)
+[PASS] fold 2: training and validation parts share no patient (train 27,428, val 6,857)
+[PASS] fold 3: training and validation parts share no patient (train 27,428, val 6,857)
+[PASS] fold 4: training and validation parts share no patient (train 27,428, val 6,857)
+[PASS] A->B: train, val and test are disjoint
+[PASS] A->B: test is exactly hospital B (20,000 patients)
+[PASS] A->B: train and val are exactly hospital A (train 17,285, val 3,051)
+[PASS] B->A: train, val and test are disjoint
+[PASS] B->A: test is exactly hospital A (20,336 patients)
+[PASS] B->A: train and val are exactly hospital B (train 17,000, val 3,000)
+[PASS] every parquet row belongs to a split (0 rows without split)
+rows per split: train 1,085,958, val 234,037, test 232,215
+[PASS] rows per split sum to the total (observed 1,552,210, expected 1,552,210)
+[PASS] row counts per split match n_rows in the patient table
+[PASS] no test patient_id in any train or val row (0 rows)
+split                              train        val       test         all
+patients                       28235.000   6050.000   6051.000   40336.000
+rows                         1085958.000 234037.000 232215.000 1552210.000
+patients_share_pct                70.000     15.000     15.000     100.000
+septic_patients                 2052.000    440.000    440.000    2932.000
+septic_pct                         7.270      7.270      7.270       7.270
+positive_rows                  19530.000   4183.000   4203.000   27916.000
+positive_rows_pct                  1.800      1.790      1.810       1.800
+hospital_A_pct                    50.420     50.410     50.420      50.420
+hospital_B_pct                    49.580     49.590     49.580      49.580
+median_stay_rows                  39.000     39.000     38.000      38.000
+stays_under_24_pct                24.180     23.390     23.680      23.990
+median_first_positive_hour        27.000     29.500     28.500      28.000
+septic_labelled_in_first_row     298.000     65.000     63.000     426.000
+[PASS] train: septic % within 0.3 points of 7.27% (7.27%)
+[PASS] train: hospital shares within 0.5 points of 50.42% / 49.58% (A 50.42%, B 49.58%)
+[PASS] val: septic % within 0.3 points of 7.27% (7.27%)
+[PASS] val: hospital shares within 0.5 points of 50.42% / 49.58% (A 50.41%, B 49.59%)
+[PASS] test: septic % within 0.3 points of 7.27% (7.27%)
+[PASS] test: hospital shares within 0.5 points of 50.42% / 49.58% (A 50.42%, B 49.58%)
+      val_patients  val_septic  val_septic_pct  val_hospital_A_pct  train_patients  train_septic_pct
+fold                                                                                                
+0             6857         498           7.260              50.420           27428             7.270
+1             6857         499           7.280              50.420           27428             7.270
+2             6857         499           7.280              50.420           27428             7.270
+3             6857         498           7.260              50.420           27428             7.270
+4             6857         498           7.260              50.420           27428             7.270
+train+val septic rate: 7.27%
+[PASS] fold 0: septic % within 0.5 points of the train+val rate (val 7.26%, train 7.27%)
+[PASS] fold 1: septic % within 0.5 points of the train+val rate (val 7.28%, train 7.27%)
+[PASS] fold 2: septic % within 0.5 points of the train+val rate (val 7.28%, train 7.27%)
+[PASS] fold 3: septic % within 0.5 points of the train+val rate (val 7.26%, train 7.27%)
+[PASS] fold 4: septic % within 0.5 points of the train+val rate (val 7.26%, train 7.27%)
+
+saved files
+  data/processed/patient_splits.csv  1.97 MB
+  data/processed/splits/train_ids.txt  0.23 MB
+  data/processed/splits/val_ids.txt  0.05 MB
+  data/processed/splits/test_ids.txt  0.05 MB
+  results/tables/split_summary.csv  0.00 MB
+  results/tables/cv_fold_summary.csv  0.00 MB
+  results/figures/fig03_split_composition.png  0.13 MB
+  results/step03_summary.txt  (this file)

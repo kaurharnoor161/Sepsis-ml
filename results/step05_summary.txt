@@ -1,0 +1,170 @@
+project root: Sepsis_ml
+features defined: 239, output columns: 244
+[PASS] feature count is 239 and names are unique
+[PASS] input rows (observed 1,552,210, expected 1,552,210)
+[PASS] input columns (observed 114, expected 114)
+[PASS] input column order
+elapsed, input stream checks: 1.6 s
+patients: 40,336, chunks: 11, rows per patient 8 to 336 (median 38)
+[PASS] patients appear once each, ordered by hospital and patient_id (40,336 patients)
+[PASS] block lengths match n_rows in patient_splits.csv
+[PASS] hour equals the row position within each patient (0 violations)
+[PASS] train patients (observed 28,235, expected 28,235)
+[PASS] train rows (observed 1,085,958, expected 1,085,958)
+[PASS] val patients (observed 6,050, expected 6,050)
+[PASS] val rows (observed 234,037, expected 234,037)
+[PASS] test patients (observed 6,051, expected 6,051)
+[PASS] test rows (observed 232,215, expected 232,215)
+[PASS] positive rows (observed 27,916, expected 27,916)
+[PASS] value is NaN only where mask = 0 or nothing observed yet (0 NaN after an observation, 0 values before the first observation)
+elapsed, feature build and write: 17.6 s
+[PASS] rows written (observed 1,552,210, expected 1,552,210)
+[PASS] columns written (observed 244, expected 244)
+[PASS] output column names and order
+[PASS] feature dtypes (float32, int16, int8, uint8 masks)
+data/processed/features_flat.parquet: 184.2 MB, 11 row groups
+features per group
+group
+value              34
+mask               34
+time_since         34
+count              34
+missingness_agg     3
+rolling            64
+trend               8
+clinical            8
+extreme            13
+static              7
+[PASS] total features in the catalog (observed 239, expected 239)
+[PASS] feature names are unique
+[PASS] catalog matches the parquet columns
+feature set all: 239 features
+feature set no_missingness: 134 features
+feature set no_icu_time: 237 features
+feature set vitals_only: 123 features
+feature set raw_values: 41 features
+feature set raw_values_with_missingness: 109 features
+[PASS] all feature set members exist in the table
+a. causality test
+[PASS] features of cut-off patients equal the full-table features (0 mismatching cells of 1,726,544, 7,076 rows from 300 patients)
+elapsed, causality test: 3.8 s
+b. plain pandas reference for rolling statistics and delta6
+[PASS] same rows in both reads
+[PASS] rolling mean, std, min, max and delta6 match the pandas reference (0 mismatches in 598,248 cells, 200 patients)
+elapsed, pandas reference check: 1.5 s
+c. counts
+[PASS] cnt equals the cumulative sum of the mask (0 violations)
+[PASS] last-row cnt equals the number of measured hours (0 patients differ)
+[PASS] n_labs_so_far equals the sum of the lab cnt columns
+[PASS] n_labs_now equals the sum of the lab masks
+[PASS] n_labs_last6 equals the sum of the last 6 rows
+elapsed, count checks: 1.7 s
+d. clinical features
+[PASS] shock_index matches the recomputed value (0 of 200,000 rows differ)
+[PASS] pulse_pressure matches the recomputed value (0 of 200,000 rows differ)
+[PASS] bun_creat_ratio matches the recomputed value (0 of 200,000 rows differ)
+[PASS] sirs_temp matches the recomputed value (0 of 200,000 rows differ)
+[PASS] sirs_hr matches the recomputed value (0 of 200,000 rows differ)
+[PASS] sirs_resp matches the recomputed value (0 of 200,000 rows differ)
+[PASS] sirs_wbc matches the recomputed value (0 of 200,000 rows differ)
+[PASS] sirs_count matches the recomputed value (0 of 200,000 rows differ)
+[PASS] sirs_count lies between 0 and 4 and equals the sum of the flags (range 0 to 4)
+elapsed, clinical feature check: 0.3 s
+e. running extremes
+[PASS] max_so_far never decreases and min_so_far never increases (0 violations)
+[PASS] extremes are never NaN after the first observation (0 violations)
+f. sanity of the output table
+[PASS] no infinite values in any feature (0 infinite values)
+[PASS] identifier columns and SepsisLabel have no missing values (0 nulls)
+[PASS] SepsisLabel sum (observed 27,916, expected 27,916)
+[PASS] hospital and split are not features
+[PASS] train patients in the output (observed 28,235, expected 28,235)
+[PASS] train rows in the output (observed 1,085,958, expected 1,085,958)
+[PASS] val patients in the output (observed 6,050, expected 6,050)
+[PASS] val rows in the output (observed 234,037, expected 234,037)
+[PASS] test patients in the output (observed 6,051, expected 6,051)
+[PASS] test rows in the output (observed 232,215, expected 232,215)
+elapsed, output sanity checks: 3.0 s
+g. copied columns equal the input
+[PASS] 102 current-state columns and 7 static columns are identical to the input
+elapsed, copy check: 2.2 s
+ten features with the largest NaN share on train rows (%)
+         feature   group  nan_pct_train
+Bilirubin_direct   value         95.430
+    EtCO2_delta6   trend         92.890
+     EtCO2_std12 rolling         91.870
+      EtCO2_std6 rolling         91.870
+     EtCO2_min12 rolling         91.660
+      EtCO2_max6 rolling         91.660
+    EtCO2_mean12 rolling         91.660
+     EtCO2_max12 rolling         91.660
+           EtCO2   value         91.660
+      EtCO2_min6 rolling         91.660
+groups with any NaN
+          n_with_nan  max_pct
+group                        
+clinical           3   21.420
+extreme           13   70.390
+rolling           64   91.870
+trend              8   92.890
+value             34   95.430
+features with NaN: 122 of 239
+AUROC sample: 300,000 train rows, 5,394 positive
+elapsed, univariate AUROC: 10.8 s
+15 strongest features by AUROC (sign +1: higher value, higher sepsis risk)
+        feature           group   auc  sign
+  n_labs_so_far missingness_agg 0.673     1
+       cnt_FiO2           count 0.670     1
+  cnt_Magnesium           count 0.661     1
+    cnt_Calcium           count 0.661     1
+  cnt_Phosphate           count 0.661     1
+        cnt_BUN           count 0.658     1
+      cnt_PaCO2           count 0.658     1
+        cnt_WBC           count 0.657     1
+  cnt_Potassium           count 0.656     1
+         cnt_pH           count 0.656     1
+ cnt_Creatinine           count 0.656     1
+  cnt_Platelets           count 0.651     1
+Temp_max_so_far         extreme 0.651     1
+        cnt_Hgb           count 0.649     1
+    cnt_Lactate           count 0.647     1
+groups of the 15 strongest features: count 13, missingness_agg 1, extreme 1
+[PASS] no single feature reaches AUROC 0.90 (max 0.673 (n_labs_so_far))
+val: five columns with the largest |std - 1|
+column
+EtCO2              0.205
+Bilirubin_direct   0.183
+Phosphate          0.065
+BUN                0.057
+Bilirubin_total    0.048
+val: five columns with the largest |mean|
+column
+Phosphate    0.032
+Fibrinogen   0.026
+EtCO2        0.025
+FiO2         0.022
+Platelets    0.020
+test: five columns with the largest |std - 1|
+column
+EtCO2              0.232
+Bilirubin_direct   0.070
+Bilirubin_total    0.069
+Fibrinogen         0.058
+TroponinI          0.038
+test: five columns with the largest |mean|
+column
+HospAdmTime   0.040
+Potassium     0.036
+Hct           0.030
+Hgb           0.027
+Lactate       0.026
+
+saved files
+  data/processed/features_flat.parquet  184.22 MB
+  results/tables/feature_catalog.csv  0.01 MB
+  data/processed/feature_sets.json  0.01 MB
+  results/tables/feature_nan_share.csv  0.01 MB
+  results/tables/univariate_auroc_train.csv  0.01 MB
+  results/figures/fig05_univariate_auroc_top20.png  0.09 MB
+  results/tables/scaled_shift_val_test.csv  0.00 MB
+  results/step05_summary.txt  (this file)

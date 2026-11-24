@@ -1,0 +1,11 @@
+# data: too big, and PhysioNet data should not be re-shared
+dataset/
+data/
+
+# python / tooling
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+mlruns/
